@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Jillian 💜</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,9 +24,11 @@
 
         body {
             min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             padding: 20px;
 
             font-family: Arial, sans-serif;
@@ -43,6 +52,7 @@
             border-radius: 28px;
 
             background: #ffffff0d;
+
             border: 1px solid #ffffff18;
 
             box-shadow:
@@ -58,7 +68,9 @@
 
         h1 {
             font-family: Georgia, serif;
+
             font-size: 38px;
+
             color: #d59bff;
         }
 
@@ -67,13 +79,17 @@
             margin-bottom: 30px;
 
             color: #cfc3d8;
+
             font-size: 13px;
+
             line-height: 1.6;
         }
 
         .tabs {
             display: flex;
+
             gap: 8px;
+
             margin-bottom: 20px;
         }
 
@@ -83,9 +99,11 @@
             padding: 11px;
 
             border: 1px solid #ffffff15;
+
             border-radius: 12px;
 
             background: #ffffff08;
+
             color: #cfc3d8;
 
             cursor: pointer;
@@ -93,19 +111,23 @@
 
         .tab.active {
             background: #9c4ed0;
+
             color: white;
         }
 
         .field {
             text-align: left;
+
             margin-bottom: 15px;
         }
 
         label {
             display: block;
+
             margin-bottom: 7px;
 
             color: #d9cce4;
+
             font-size: 12px;
         }
 
@@ -115,11 +137,13 @@
             padding: 14px;
 
             border: 1px solid #ffffff18;
+
             border-radius: 14px;
 
             outline: none;
 
             background: #ffffff08;
+
             color: white;
 
             font-size: 14px;
@@ -133,20 +157,46 @@
             width: 100%;
 
             margin-top: 8px;
+
             padding: 14px;
 
             border: none;
+
             border-radius: 50px;
 
             background: #9c4ed0;
+
             color: white;
 
             font-size: 14px;
+
             cursor: pointer;
         }
 
         .main-button:active {
             transform: scale(.98);
+        }
+
+        .forgot-button {
+            margin-top: 14px;
+
+            padding: 5px;
+
+            background: none;
+
+            border: none;
+
+            color: #c99bea;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .forgot-button:hover {
+            color: #e2bfff;
+
+            text-decoration: underline;
         }
 
         .message {
@@ -155,7 +205,9 @@
             margin-top: 18px;
 
             color: #d9cce4;
+
             font-size: 12px;
+
             line-height: 1.5;
         }
 
@@ -167,26 +219,41 @@
             margin-top: 20px;
 
             color: #9f91aa;
+
             font-size: 11px;
         }
+
     </style>
+
 </head>
+
 
 <body>
 
     <div class="card">
 
-        <div class="heart">💜</div>
 
-        <h1>Jillian</h1>
+        <div class="heart">
+            💜
+        </div>
+
+
+        <h1>
+            Jillian
+        </h1>
+
 
         <p class="subtitle">
             Welcome to your little world. 💜
         </p>
 
+
+        <!-- TABS -->
+
         <div class="tabs">
 
             <button
+                type="button"
                 class="tab active"
                 id="loginTab"
                 onclick="showLogin()"
@@ -194,7 +261,9 @@
                 Login
             </button>
 
+
             <button
+                type="button"
                 class="tab"
                 id="signupTab"
                 onclick="showSignup()"
@@ -205,13 +274,16 @@
         </div>
 
 
-        <!-- LOGIN -->
+        <!-- LOGIN FORM -->
 
         <div id="loginForm">
 
+
             <div class="field">
 
-                <label>Email</label>
+                <label>
+                    Email
+                </label>
 
                 <input
                     type="email"
@@ -225,7 +297,9 @@
 
             <div class="field">
 
-                <label>Password</label>
+                <label>
+                    Password
+                </label>
 
                 <input
                     type="password"
@@ -238,40 +312,39 @@
 
 
             <button
+                type="button"
                 class="main-button"
                 onclick="login()"
             >
                 💜 Login
             </button>
 
-          <button
-    type="button"
-    onclick="forgotPassword()"
-    style="
-        margin-top: 14px;
-        background: none;
-        border: none;
-        color: #c99bea;
-        font-size: 12px;
-        cursor: pointer;
-    "
->
-    Forgot your password? 💜
-          </button>
+
+            <button
+                type="button"
+                class="forgot-button"
+                onclick="forgotPassword()"
+            >
+                Forgot your password? 💜
+            </button>
+
 
         </div>
 
 
-        <!-- SIGN UP -->
+        <!-- SIGN UP FORM -->
 
         <div
             id="signupForm"
             class="hidden"
         >
 
+
             <div class="field">
 
-                <label>Email</label>
+                <label>
+                    Email
+                </label>
 
                 <input
                     type="email"
@@ -285,7 +358,9 @@
 
             <div class="field">
 
-                <label>Password</label>
+                <label>
+                    Password
+                </label>
 
                 <input
                     type="password"
@@ -299,7 +374,9 @@
 
             <div class="field">
 
-                <label>Confirm Password</label>
+                <label>
+                    Confirm Password
+                </label>
 
                 <input
                     type="password"
@@ -312,14 +389,18 @@
 
 
             <button
+                type="button"
                 class="main-button"
                 onclick="signup()"
             >
                 💜 Create Account
             </button>
 
+
         </div>
 
+
+        <!-- MESSAGE -->
 
         <div
             id="message"
@@ -331,27 +412,22 @@
             Made with love 💜
         </div>
 
+
     </div>
 
 
+
 <script>
+
 
     /* =====================================================
        SUPABASE CONNECTION
        ===================================================== */
 
+
     const SUPABASE_URL =
         "https://ffqaxhcuxnqzphzlkyww.supabase.co";
 
-
-    /*
-       IMPORTANT:
-
-       Replace the text below with your
-       SUPABASE PUBLISHABLE KEY.
-
-       DO NOT use the sb_secret key.
-    */
 
     const SUPABASE_PUBLISHABLE_KEY =
         "sb_publishable_jPrQp0sn-jYxuUMkVaLTtw_SISaBZrd";
@@ -364,81 +440,105 @@
         );
 
 
+
     /* =====================================================
        MESSAGE
        ===================================================== */
 
+
     function showMessage(text) {
 
-        document.getElementById("message").textContent =
-            text;
+        document
+            .getElementById("message")
+            .textContent = text;
 
     }
 
 
+
     /* =====================================================
-       SWITCH TO LOGIN
+       SHOW LOGIN
        ===================================================== */
+
 
     function showLogin() {
 
+
         document
             .getElementById("loginForm")
-            .classList.remove("hidden");
+            .classList
+            .remove("hidden");
+
 
         document
             .getElementById("signupForm")
-            .classList.add("hidden");
+            .classList
+            .add("hidden");
 
 
         document
             .getElementById("loginTab")
-            .classList.add("active");
+            .classList
+            .add("active");
+
 
         document
             .getElementById("signupTab")
-            .classList.remove("active");
+            .classList
+            .remove("active");
 
 
         showMessage("");
 
     }
+
 
 
     /* =====================================================
-       SWITCH TO SIGN UP
+       SHOW SIGN UP
        ===================================================== */
+
 
     function showSignup() {
 
+
         document
             .getElementById("loginForm")
-            .classList.add("hidden");
+            .classList
+            .add("hidden");
+
 
         document
             .getElementById("signupForm")
-            .classList.remove("hidden");
+            .classList
+            .remove("hidden");
 
 
         document
             .getElementById("loginTab")
-            .classList.remove("active");
+            .classList
+            .remove("active");
+
 
         document
             .getElementById("signupTab")
-            .classList.add("active");
+            .classList
+            .add("active");
 
 
         showMessage("");
 
     }
+
 
 
     /* =====================================================
        CREATE ACCOUNT
        ===================================================== */
 
+
     async function signup() {
+
 
         const email =
             document
@@ -446,10 +546,12 @@
                 .value
                 .trim();
 
+
         const password =
             document
                 .getElementById("signupPassword")
                 .value;
+
 
         const confirm =
             document
@@ -457,13 +559,18 @@
                 .value;
 
 
-        if (!email || !password || !confirm) {
+        if (
+            !email ||
+            !password ||
+            !confirm
+        ) {
 
             showMessage(
                 "Please fill in everything. 💜"
             );
 
             return;
+
         }
 
 
@@ -474,6 +581,7 @@
             );
 
             return;
+
         }
 
 
@@ -484,6 +592,7 @@
             );
 
             return;
+
         }
 
 
@@ -492,7 +601,7 @@
         );
 
 
-        const { data, error } =
+        const { error } =
             await supabaseClient.auth.signUp({
 
                 email: email,
@@ -516,13 +625,9 @@
             );
 
             return;
+
         }
 
-
-        /*
-           Because Confirm email is ON,
-           Supabase will send a confirmation email.
-        */
 
         showMessage(
             "Account created! 💜 Check your email to confirm your account."
@@ -531,17 +636,21 @@
     }
 
 
+
     /* =====================================================
        LOGIN
        ===================================================== */
 
+
     async function login() {
+
 
         const email =
             document
                 .getElementById("loginEmail")
                 .value
                 .trim();
+
 
         const password =
             document
@@ -556,6 +665,7 @@
             );
 
             return;
+
         }
 
 
@@ -564,7 +674,7 @@
         );
 
 
-        const { data, error } =
+        const { error } =
             await supabaseClient.auth
                 .signInWithPassword({
 
@@ -582,6 +692,7 @@
             );
 
             return;
+
         }
 
 
@@ -589,11 +700,6 @@
             "Login successful! 💜"
         );
 
-
-        /*
-           Give Supabase a moment to save
-           the session before opening the site.
-        */
 
         setTimeout(
             function() {
@@ -605,11 +711,17 @@
             700
         );
 
-      /* =====================================================
+    }
+
+
+
+    /* =====================================================
        FORGOT PASSWORD
        ===================================================== */
 
+
     async function forgotPassword() {
+
 
         const email =
             document
@@ -625,6 +737,7 @@
             );
 
             return;
+
         }
 
 
@@ -636,11 +749,16 @@
         const { error } =
             await supabaseClient.auth
                 .resetPasswordForEmail(
+
                     email,
+
                     {
+
                         redirectTo:
                             "https://velascorogelio.github.io/Jill/reset-password.html"
+
                     }
+
                 );
 
 
@@ -651,6 +769,7 @@
             );
 
             return;
+
         }
 
 
@@ -658,11 +777,12 @@
             "Recovery email sent! 📧💜 Check your inbox."
         );
 
-            }
-
     }
+
 
 </script>
 
+
 </body>
+
 </html>
