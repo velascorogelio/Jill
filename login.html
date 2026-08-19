@@ -244,6 +244,21 @@
                 💜 Login
             </button>
 
+          <button
+    type="button"
+    onclick="forgotPassword()"
+    style="
+        margin-top: 14px;
+        background: none;
+        border: none;
+        color: #c99bea;
+        font-size: 12px;
+        cursor: pointer;
+    "
+>
+    Forgot your password? 💜
+          </button>
+
         </div>
 
 
@@ -589,6 +604,61 @@
             },
             700
         );
+
+      /* =====================================================
+       FORGOT PASSWORD
+       ===================================================== */
+
+    async function forgotPassword() {
+
+        const email =
+            document
+                .getElementById("loginEmail")
+                .value
+                .trim();
+
+
+        if (!email) {
+
+            showMessage(
+                "Enter your email first so we know where to send the recovery link. 💜"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            "Sending your password recovery email... 📧💜"
+        );
+
+
+        const { error } =
+            await supabaseClient.auth
+                .resetPasswordForEmail(
+                    email,
+                    {
+                        redirectTo:
+                            "https://velascorogelio.github.io/Jill/reset-password.html"
+                    }
+                );
+
+
+        if (error) {
+
+            showMessage(
+                error.message
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            "Recovery email sent! 📧💜 Check your inbox."
+        );
+
+            }
 
     }
 
