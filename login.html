@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#050208"
+>
+
+<title>Jillian — Connection</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    background:
+        #050208;
+
+}
+
+
+/* =====================================================
+   UNIVERSE
+===================================================== */
+
+.universe {
+
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    min-height: 600px;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            #35134d 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 15% 80%,
+            #211033 0%,
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            #291039 0%,
+            transparent 35%
+        ),
+
+        linear-gradient(
+            145deg,
+            #030107,
+            #0b0312 45%,
+            #050208
+        );
+
+}
+
+
+/* =====================================================
+   NEBULA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 80vw;
+    height: 80vw;
+
+    max-width: 700px;
+    max-height: 700px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #a84dde22 0%,
+            #7d31b814 30%,
+            transparent 68%
+        );
+
+    filter:
+        blur(35px);
+
+    animation:
+        nebulaBreath
+        9s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes nebulaBreath {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+        opacity: .55;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        opacity: .9;
+
+    }
+
+}
+
+
+/* =====================================================
+   SECOND NEBULA
+===================================================== */
+
+.nebula-two {
+
+    position: absolute;
+
+    width: 50vw;
+    height: 50vw;
+
+    max-width: 450px;
+    max-height: 450px;
+
+    left: 65%;
+    top: 35%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #d26aff15,
+            transparent 65%
+        );
+
+    filter:
+        blur(50px);
+
+    animation:
+        floatNebula
+        13s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes floatNebula {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            translate(0, 0);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            translate(-70px, 40px);
+
+    }
+
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+#stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.star {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    animation:
+        starFloat
+        linear
+        infinite;
+
+}
+
+
+@keyframes starFloat {
+
+    0% {
+
+        opacity: .05;
+
+        transform:
+            scale(.5)
+            translateY(0);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: .05;
+
+        transform:
+            scale(1.3)
+            translateY(-30px);
+
+    }
+
+}
+
+
+/* =====================================================
+   ORBITS
+===================================================== */
+
+.orbit {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width:
+        min(75vw, 500px);
+
+    height:
+        min(75vw, 500px);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-18deg);
+
+    border:
+        1px solid
+        #d99aff12;
+
+    border-radius: 50%;
+
+    animation:
+        orbitRotate
+        30s
+        linear
+        infinite;
+
+}
+
+
+.orbit::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    left: 15%;
+    top: 8%;
+
+    border-radius: 50%;
+
+    background:
+        #d9a3ff;
+
+    box-shadow:
+
+        0 0 15px
+        #d9a3ff,
+
+        0 0 35px
+        #b45cff;
+
+}
+
+
+.orbit.two {
+
+    width:
+        min(58vw, 390px);
+
+    height:
+        min(58vw, 390px);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(55deg);
+
+    animation-duration:
+        42s;
+
+    border-color:
+        #b76bea0d;
+
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   CORE
+===================================================== */
+
+.core {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 12px;
+    height: 12px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        white;
+
+    box-shadow:
+
+        0 0 15px
+        #fff,
+
+        0 0 40px
+        #d28aff,
+
+        0 0 90px
+        #a84dde,
+
+        0 0 150px
+        #8b36bd;
+
+    animation:
+        corePulse
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes corePulse {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.7);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.5);
+
+    }
+
+}
+
+
+/* =====================================================
+   CORE EXPLOSION
+===================================================== */
+
+.unlocked .core {
+
+    animation:
+        coreExplosion
+        1.8s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes coreExplosion {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        opacity: 1;
+
+    }
+
+    35% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(5);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(18);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   VIGNETTE
+===================================================== */
+
+.vignette {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            transparent 30%,
+            #00000088 100%
+        );
+
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.content {
+
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: 48%;
+
+    width:
+        min(88%, 440px);
+
+    transform:
+        translate(-50%, -50%);
+
+    text-align: center;
+
+    padding:
+        10px 0 20px;
+
+}
+
+
+/* =====================================================
+   CONNECTION TEXT
+===================================================== */
+
+.connection {
+
+    min-height: 16px;
+
+    margin-bottom: 25px;
+
+    color:
+        #c998e5;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform:
+        uppercase;
+
+    opacity: 0;
+
+    animation:
+        fadeUp
+        1s
+        .5s
+        forwards;
+
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.heart {
+
+    font-size: 52px;
+
+    margin-bottom: 18px;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            #b75bea
+        );
+
+    animation:
+        heartReveal
+        1.2s
+        1.1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes heartReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-20deg);
+
+        filter:
+            blur(12px)
+            drop-shadow(
+                0 0 0
+                transparent
+            );
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+        filter:
+            blur(0)
+            drop-shadow(
+                0 0 25px
+                #b75bea
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+.name {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            48px,
+            14vw,
+            78px
+        );
+
+    line-height:
+        .85;
+
+    color:
+        #e1a7ff;
+
+    opacity: 0;
+
+    filter:
+        blur(14px);
+
+    transform:
+        translateY(18px)
+        scale(.96);
+
+    text-shadow:
+
+        0 0 25px
+        #b65ce866,
+
+        0 0 80px
+        #9d42cc33;
+
+    animation:
+        nameReveal
+        1.6s
+        1.5s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes nameReveal {
+
+    to {
+
+        opacity: 1;
+
+        filter:
+            blur(0);
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle {
+
+    margin-top: 16px;
+
+    color:
+        #d6c8dc;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        fadeUp
+        1s
+        2.4s
+        forwards;
+
+}
+
+
+.subtitle strong {
+
+    color:
+        #e4b7ff;
+
+}
+
+
+/* =====================================================
+   ACCESS
+===================================================== */
+
+.access {
+
+    margin-top: 22px;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        fadeUp
+        1s
+        3s
+        forwards;
+
+}
+
+
+.label {
+
+    margin-bottom: 10px;
+
+    color:
+        #897b91;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =====================================================
+   INPUT WRAPPER
+===================================================== */
+
+.input-wrap {
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+
+/* =====================================================
+   SECRET INPUT
+===================================================== */
+
+.secret-input {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(214,154,255,.28);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    backdrop-filter:
+        blur(24px);
+
+    -webkit-backdrop-filter:
+        blur(24px);
+
+    overflow: hidden;
+
+    box-shadow:
+
+        inset 0 0 25px
+        rgba(255,255,255,.025),
+
+        0 0 30px
+        rgba(174,82,230,.10);
+
+    transition:
+
+        border-color .4s ease,
+
+        box-shadow .4s ease,
+
+        background .4s ease;
+
+}
+
+
+/* =====================================================
+   LOCK ICON
+===================================================== */
+
+.key-icon {
+
+    position: absolute;
+
+    left: 20px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 17px;
+
+    opacity: .7;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.secret-input input {
+
+    width: 100%;
+
+    height: 100%;
+
+    padding:
+        0 55px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color:
+        #ffffff;
+
+    text-align:
+        center;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    caret-color:
+        #d99aff;
+
+}
+
+
+.secret-input input::placeholder {
+
+    color:
+        #9f8ca7;
+
+    opacity: .8;
+
+    letter-spacing:
+        6px;
+
+}
+
+
+/* =====================================================
+   INPUT FOCUS
+===================================================== */
+
+.secret-input:focus-within {
+
+    border-color:
+        rgba(214,154,255,.7);
+
+    background:
+        rgba(255,255,255,.075);
+
+    box-shadow:
+
+        0 0 35px
+        rgba(174,82,230,.25),
+
+        inset 0 0 30px
+        rgba(255,255,255,.035);
+
+}
+
+
+/* =====================================================
+   PURPLE ENERGY LINE
+===================================================== */
+
+.secret-input::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #d99aff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        #c56aff;
+
+    transition:
+        width .5s ease;
+
+}
+
+
+.secret-input:focus-within::after {
+
+    width: 65%;
+
+}
+
+
+/* =====================================================
+   KEY HINT
+===================================================== */
+
+.key-hint {
+
+    margin-top: 9px;
+
+    color:
+        #75677d;
+
+    font-size: 9px;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+/* =====================================================
+   ERROR STATE
+===================================================== */
+
+.secret-input.error {
+
+    border-color:
+        rgba(255,90,130,.75);
+
+    box-shadow:
+
+        0 0 30px
+        rgba(255,60,120,.2);
+
+    animation:
+        errorShake
+        .5s
+        ease;
+
+}
+
+
+.secret-input.error::after {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff6b9d,
+            transparent
+        );
+
+}
+
+
+/* =====================================================
+   UNLOCK BUTTON
+===================================================== */
+
+.unlock {
+
+    width: 100%;
+
+    height: 54px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+
+        linear-gradient(
+            110deg,
+            #7b35a8,
+            #b85de7,
+            #7835a7
+        );
+
+    background-size:
+        200% 100%;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 40px
+        #9d48d044;
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .4s ease,
+
+        background-position .7s ease;
+
+    animation:
+        buttonGradient
+        5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes buttonGradient {
+
+    0%,
+    100% {
+
+        background-position:
+            0% 50%;
+
+    }
+
+    50% {
+
+        background-position:
+            100% 50%;
+
+    }
+
+}
+
+
+.unlock:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 50px
+        #a94ee866;
+
+}
+
+
+.unlock:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+.unlock:disabled {
+
+    opacity: .6;
+
+    cursor:
+        default;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    color:
+        #aa99b3;
+
+    font-size: 11px;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+/* =====================================================
+   MAIN FADE
+===================================================== */
+
+.unlocked .content {
+
+    animation:
+        finalFade
+        1.5s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes finalFade {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+    60% {
+
+        opacity: .8;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.04);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        filter:
+            blur(12px);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
+.final {
+
+    position: absolute;
+
+    z-index: 20;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+}
+
+
+.final.show {
+
+    pointer-events:
+        auto;
+
+    animation:
+        finalReveal
+        2s
+        .5s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes finalReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.8);
+
+        filter:
+            blur(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL CONTENT
+===================================================== */
+
+.final-content {
+
+    width:
+        min(90%, 420px);
+
+    padding:
+        20px;
+
+}
+
+
+.final-small {
+
+    color:
+        #c998e5;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+
+.final h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            45px,
+            13vw,
+            70px
+        );
+
+    color:
+        #e1a7ff;
+
+    text-shadow:
+
+        0 0 40px
+        #b65ce888,
+
+        0 0 100px
+        #a94ee844;
+
+}
+
+
+.final p {
+
+    margin-top: 22px;
+
+    color:
+        #d6c8dc;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   ENTER BUTTON
+===================================================== */
+
+.enter {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 30px;
+
+    min-height: 55px;
+
+    padding:
+        0 30px;
+
+    border-radius:
+        50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #b65ce8,
+            #7131a0
+        );
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-size: 13px;
+
+    font-weight:
+        bold;
+
+    box-shadow:
+        0 15px 50px
+        #a94ee866;
+
+    opacity: 0;
+
+    animation:
+        buttonAppear
+        1s
+        2.3s
+        forwards;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.enter:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 20px 60px
+        #a94ee899;
+
+}
+
+
+@keyframes buttonAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   GENERAL ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes errorShake {
+
+    0%,
+    100% {
+
+        transform:
+            translateX(0);
+
+    }
+
+    20% {
+
+        transform:
+            translateX(-8px);
+
+    }
+
+    40% {
+
+        transform:
+            translateX(8px);
+
+    }
+
+    60% {
+
+        transform:
+            translateX(-5px);
+
+    }
+
+    80% {
+
+        transform:
+            translateX(5px);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-height: 700px) {
+
+    .content {
+
+        top: 46%;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.9);
+
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .content {
+
+        width:
+            90%;
+
+    }
+
+    .connection {
+
+        letter-spacing:
+            3px;
+
+        font-size:
+            8px;
+
+    }
+
+    .heart {
+
+        font-size:
+            44px;
+
+    }
+
+    .subtitle {
+
+        font-size:
+            13px;
+
+    }
+
+    .secret-input {
+
+        height:
+            56px;
+
+    }
+
+    .unlock {
+
+        height:
+            52px;
+
+    }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div
+    class="universe"
+    id="universe"
+>
+
+
+    <!-- =================================================
+         NEBULAS
+    ================================================= -->
+
+    <div class="nebula"></div>
+
+    <div class="nebula-two"></div>
+
+
+    <!-- =================================================
+         STARS
+    ================================================= -->
+
+    <div id="stars"></div>
+
+
+    <!-- =================================================
+         ORBITS
+    ================================================= -->
+
+    <div class="orbit"></div>
+
+    <div class="orbit two"></div>
+
+
+    <!-- =================================================
+         CORE
+    ================================================= -->
+
+    <div class="core"></div>
+
+
+    <!-- =================================================
+         VIGNETTE
+    ================================================= -->
+
+    <div class="vignette"></div>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================= -->
+
+    <main
+        class="content"
+        id="content"
+    >
+
+
+        <div class="connection">
+
+            Connection established...
+
+        </div>
+
+
+        <div class="heart">
+
+            💜
+
+        </div>
+
+
+        <h1 class="name">
+
+            Jillian
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Welcome, Jillian.
+
+            <br><br>
+
+            Your
+            <strong>BABYY</strong>
+            made something for you.
+
+        </p>
+
+
+        <div class="access">
+
+
+            <div class="label">
+
+                YOUR PRIVATE KEY
+
+            </div>
+
+
+            <div class="input-wrap">
+
+
+                <div
+                    class="secret-input"
+                    id="secretInput"
+                >
+
+
+                    <div class="key-icon">
+
+                        🔐
+
+                    </div>
+
+
+                    <input
+                        type="password"
+                        id="birthdate"
+                        maxlength="8"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="••••••••"
+                        aria-label="Your private key"
+                    >
+
+
+                </div>
+
+
+                <div class="key-hint">
+
+                    YOUR BIRTHDATE • 8 DIGITS
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="unlock"
+                id="unlockButton"
+                type="button"
+                onclick="unlock()"
+            >
+
+                UNLOCK CONNECTION
+
+            </button>
+
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =================================================
+         FINAL SCREEN
+    ================================================= -->
+
+    <section
+        class="final"
+        id="final"
+    >
+
+
+        <div class="final-content">
+
+
+            <div class="final-small">
+
+                Connection established...
+
+            </div>
+
+
+            <h2>
+
+                Jillian
+
+            </h2>
+
+
+            <p>
+
+                Welcome, Jillian.
+
+                <br><br>
+
+                Your BABYY made something
+                for you.
+
+            </p>
+
+
+            <a
+                class="enter"
+                href="index.html"
+            >
+
+                ENTER THE UNIVERSE 💜
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   STAR FIELD
+===================================================== */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+for (
+    let i = 0;
+    i < 150;
+    i++
+) {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+
+    star.className =
+        "star";
+
+
+    const size =
+        Math.random() * 2.5 + .5;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    star.style.animationDuration =
+        (
+            3 +
+            Math.random() * 6
+        ) + "s";
+
+
+    star.style.animationDelay =
+        (
+            -Math.random() * 6
+        ) + "s";
+
+
+    stars.appendChild(
+        star
+    );
+
+}
+
+
+/* =====================================================
+   SECRET BIRTHDATE
+===================================================== */
+
+/*
+   FORMAT:
+
+   DDMMYYYY
+
+   Example:
+
+   29 September 2008
+   = 29092008
+
+   Change ONLY this value if needed.
+*/
+
+const SECRET_BIRTHDATE =
+    "29092008";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let unlocking =
+    false;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const input =
+    document.getElementById(
+        "birthdate"
+    );
+
+
+const secretBox =
+    document.getElementById(
+        "secretInput"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const universe =
+    document.getElementById(
+        "universe"
+    );
+
+
+const final =
+    document.getElementById(
+        "final"
+    );
+
+
+const unlockButton =
+    document.getElementById(
+        "unlockButton"
+    );
+
+
+/* =====================================================
+   UNLOCK
+===================================================== */
+
+function unlock() {
+
+
+    /* -----------------------------------------------
+       PREVENT DOUBLE CLICK
+    ------------------------------------------------ */
+
+    if (unlocking) {
+
+        return;
+
+    }
+
+
+    const birthdate =
+        input.value.trim();
+
+
+    /* -----------------------------------------------
+       EMPTY
+    ------------------------------------------------ */
+
+    if (!birthdate) {
+
+
+        message.textContent =
+            "Your private key is waiting... 💜";
+
+
+        secretBox.classList.add(
+            "error"
+        );
+
+
+        setTimeout(
+            function() {
+
+                secretBox.classList.remove(
+                    "error"
+                );
+
+            },
+            600
+        );
+
+
+        input.focus();
+
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       WRONG KEY
+    ------------------------------------------------ */
+
+    if (
+        birthdate !==
+        SECRET_BIRTHDATE
+    ) {
+
+
+        secretBox.classList.remove(
+            "error"
+        );
+
+
+        void secretBox.offsetWidth;
+
+
+        secretBox.classList.add(
+            "error"
+        );
+
+
+        message.textContent =
+            "Connection rejected. Try again. 💜";
+
+
+        input.select();
+
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       CORRECT KEY
+    ------------------------------------------------ */
+
+    unlocking =
+        true;
+
+
+    message.textContent =
+        "Connection accepted... 💜";
+
+
+    unlockButton.disabled =
+        true;
+
+
+    input.disabled =
+        true;
+
+
+    input.blur();
+
+
+    /* -----------------------------------------------
+       START TRANSITION
+    ------------------------------------------------ */
+
+    universe.classList.add(
+        "unlocked"
+    );
+
+
+    /* -----------------------------------------------
+       SHOW FINAL
+    ------------------------------------------------ */
+
+    setTimeout(
+        function() {
+
+            final.classList.add(
+                "show"
+            );
+
+        },
+        900
+    );
+
+}
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+input.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+
+            event.preventDefault();
+
+
+            unlock();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NUMBERS ONLY
+===================================================== */
+
+input.addEventListener(
+    "input",
+    function() {
+
+
+        this.value =
+            this.value
+                .replace(
+                    /\D/g,
+                    ""
+                )
+                .slice(
+                    0,
+                    8
+                );
+
+    }
+);
+
+
+/* =====================================================
+   CLEAR ERROR WHEN TYPING
+===================================================== */
+
+input.addEventListener(
+    "input",
+    function() {
+
+
+        secretBox.classList.remove(
+            "error"
+        );
+
+
+        if (
+            message.textContent ===
+            "Connection rejected. Try again. 💜"
+        ) {
+
+            message.textContent =
+                "";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
