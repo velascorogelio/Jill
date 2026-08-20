@@ -11,8 +11,11 @@
 >
 
 <title>For Jillian 💜</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  
 <script>
     const SUPABASE_URL =
         "https://ffqaxhcuxnqzphzlkyww.supabase.co";
@@ -26,41 +29,31 @@
             SUPABASE_PUBLISHABLE_KEY
         );
 
-    (async () => {
+    (async function protectPage() {
+
         const {
-            data: { session }
+            data: {
+                session
+            }
         } = await supabaseClient.auth.getSession();
 
         if (!session) {
-            window.location.replace("login.html");
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
         }
+
+        document.documentElement.style.visibility =
+            "visible";
+
     })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-    const SUPABASE_URL =
-        "https://ffqaxhcuxnqzphzlkyww.supabase.co";
 
-    const SUPABASE_PUBLISHABLE_KEY =
-        "sb_publishable_jPrQp0sn-jYxuUMkVaLTtw_SISaBZrd";
 
-    const supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_PUBLISHABLE_KEY
-        );
-
-    (async () => {
-        const {
-            data: { session }
-        } = await supabaseClient.auth.getSession();
-
-        if (!session) {
-            window.location.replace("login.html");
-        }
-    })();
-</script>
   
 
 
@@ -78,6 +71,7 @@
 
 html {
     scroll-behavior: smooth;
+    visibility: hidden;
 }
 
 body {
