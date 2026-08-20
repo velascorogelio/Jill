@@ -4473,7 +4473,7 @@ body{
         >
 
             <img
-                src="jillian1.jpg"
+                src="jillianone.jpg"
                 alt="Jillian"
             >
 
@@ -4490,7 +4490,7 @@ body{
         >
 
             <img
-                src="jillian2.jpg"
+                src="jilliantwo.jpg"
                 alt="Jillian"
             >
 
@@ -4507,7 +4507,7 @@ body{
         >
 
             <img
-                src="jillian3.jpg"
+                src="jillianthree.jpg"
                 alt="Jillian"
             >
 
@@ -4524,7 +4524,7 @@ body{
         >
 
             <img
-                src="jillian4.jpg"
+                src="jillianfour.jpg"
                 alt="Jillian"
             >
 
@@ -4541,7 +4541,7 @@ body{
         >
 
             <img
-                src="jillian5.jpg"
+                src="jillianfive.jpg"
                 alt="Jillian"
             >
 
@@ -4558,7 +4558,7 @@ body{
         >
 
             <img
-                src="jillian6.jpg"
+                src="jilliansix.jpg"
                 alt="Jillian"
             >
 
@@ -4575,7 +4575,7 @@ body{
         >
 
             <img
-                src="jillian7.jpg"
+                src="jillianseven.jpg"
                 alt="Jillian"
             >
 
@@ -4592,7 +4592,7 @@ body{
         >
 
             <img
-                src="jillian8.jpg"
+                src="jillianeigth.jpg"
                 alt="Jillian"
             >
 
@@ -4609,7 +4609,7 @@ body{
         >
 
             <img
-                src="jillian9.jpg"
+                src="jilliannine.jpg"
                 alt="Jillian"
             >
 
@@ -4626,7 +4626,7 @@ body{
         >
 
             <img
-                src="jillian10.jpg"
+                src="jillianten.jpg"
                 alt="Jillian"
             >
 
@@ -4643,7 +4643,7 @@ body{
         >
 
             <img
-                src="jillian11.jpg"
+                src="jillianeleven.jpg"
                 alt="Jillian"
             >
 
@@ -4660,7 +4660,7 @@ body{
         >
 
             <img
-                src="jillian12.jpg"
+                src="jilliantwelve.jpg"
                 alt="Jillian"
             >
 
@@ -4677,7 +4677,7 @@ body{
         >
 
             <img
-                src="jillian13.jpg"
+                src="jillianthirteen.jpg"
                 alt="Jillian"
             >
 
@@ -4694,7 +4694,7 @@ body{
         >
 
             <img
-                src="jillian14.jpg"
+                src="jillianfourteen.jpg"
                 alt="Jillian"
             >
 
@@ -4711,7 +4711,7 @@ body{
         >
 
             <img
-                src="jillian15.jpg"
+                src="jillianfifteen.jpg"
                 alt="Jillian"
             >
 
@@ -6026,15 +6026,60 @@ function playSong(button){
     const songFile =
         song.getAttribute("data-song");
 
-    /* -----------------------------------------------
-       STOP CURRENT SONG
-    ------------------------------------------------ */
+
+    /* =================================================
+       IF THIS SONG IS CURRENTLY PLAYING
+    ================================================= */
+
+    if(
+        currentAudio &&
+        currentSong === song
+    ){
+
+        if(
+            currentAudio.paused
+        ){
+
+            currentAudio.play()
+                .then(function(){
+
+                    button.textContent =
+                        "❚❚";
+
+                })
+                .catch(function(error){
+
+                    console.error(
+                        "Resume error:",
+                        error
+                    );
+
+                });
+
+        }else{
+
+            currentAudio.pause();
+
+            button.textContent =
+                "▶";
+
+        }
+
+        return;
+
+    }
+
+
+    /* =================================================
+       STOP PREVIOUS SONG
+    ================================================= */
 
     if(currentAudio){
 
         currentAudio.pause();
 
-        currentAudio.currentTime = 0;
+        currentAudio.currentTime =
+            0;
 
         if(currentSong){
 
@@ -6042,37 +6087,44 @@ function playSong(button){
                 "playing"
             );
 
+            const oldButton =
+                currentSong.querySelector(
+                    ".play-button"
+                );
+
+            if(oldButton){
+
+                oldButton.textContent =
+                    "▶";
+
+            }
+
         }
 
     }
 
 
-    /* -----------------------------------------------
-       CREATE AUDIO
-    ------------------------------------------------ */
+    /* =================================================
+       CREATE NEW AUDIO
+    ================================================= */
 
     const audio =
-        new Audio();
+        new Audio(songFile);
 
-    currentAudio = audio;
+    currentAudio =
+        audio;
 
-    currentSong = song;
+    currentSong =
+        song;
 
-
-    /* -----------------------------------------------
-       LOAD SONG
-    ------------------------------------------------ */
-
-    audio.src =
-        songFile;
 
     audio.preload =
         "auto";
 
 
-    /* -----------------------------------------------
+    /* =================================================
        PLAY
-    ------------------------------------------------ */
+    ================================================= */
 
     audio.play()
         .then(function(){
@@ -6088,7 +6140,7 @@ function playSong(button){
         .catch(function(error){
 
             console.error(
-                "Song error:",
+                "Song could not play:",
                 error
             );
 
@@ -6099,17 +6151,12 @@ function playSong(button){
             button.textContent =
                 "▶";
 
-            alert(
-                "Bro this song couldn't play. " +
-                "Check that the MP3 is inside the songs folder."
-            );
-
         });
 
 
-    /* -----------------------------------------------
+    /* =================================================
        SONG FINISHED
-    ------------------------------------------------ */
+    ================================================= */
 
     audio.addEventListener(
         "ended",
@@ -6132,7 +6179,8 @@ function playSong(button){
     );
 
 }
-
+    
+          
 
 
 
