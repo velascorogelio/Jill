@@ -4065,6 +4065,108 @@ body{
 }
 
 
+  /* =====================================================
+   PHOTO ZOOM / LIGHTBOX
+===================================================== */
+
+.photo-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 3, 18, 0.92);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+
+.photo-lightbox.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+.photo-lightbox img {
+    max-width: 95vw;
+
+    max-height: 90vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.7);
+
+    transform: scale(.85);
+
+    transition:
+        transform .35s ease;
+}
+
+
+.photo-lightbox.show img {
+    transform: scale(1);
+}
+
+
+.photo-lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #ffffff30;
+
+    border-radius: 50%;
+
+    background: #ffffff15;
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+
+.photo-lightbox-close:active {
+    transform: scale(.9);
+}
+
   
   
 
@@ -4477,6 +4579,7 @@ body{
             <img
                 src="jillianone.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4494,6 +4597,7 @@ body{
             <img
                 src="jilliantwo.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4511,6 +4615,7 @@ body{
             <img
                 src="jillianthree.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4528,6 +4633,7 @@ body{
             <img
                 src="jillianfour.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4545,6 +4651,7 @@ body{
             <img
                 src="jillianfive.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4562,6 +4669,7 @@ body{
             <img
                 src="jilliansix.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4579,6 +4687,7 @@ body{
             <img
                 src="jillianseven.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4596,6 +4705,7 @@ body{
             <img
                 src="jillianeigth.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4613,6 +4723,7 @@ body{
             <img
                 src="jilliannine.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4630,6 +4741,7 @@ body{
             <img
                 src="jillianten.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4647,6 +4759,7 @@ body{
             <img
                 src="jillianeleven.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4664,6 +4777,7 @@ body{
             <img
                 src="jilliantwelve.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4681,6 +4795,7 @@ body{
             <img
                 src="jillianthirteen.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4698,6 +4813,7 @@ body{
             <img
                 src="jillianfourteen.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -4715,6 +4831,7 @@ body{
             <img
                 src="jillianfifteen.jpg"
                 alt="Jillian"
+                onclick="openPhoto(this)"
             >
 
             <div class="photo-caption">
@@ -6451,10 +6568,79 @@ function openFinalSecret(){
 
 }
 
+
+  /* =====================================================
+   PHOTO ZOOM
+===================================================== */
+
+function openPhoto(image) {
+
+    const lightbox =
+        document.getElementById("photoLightbox");
+
+    const zoomedPhoto =
+        document.getElementById("zoomedPhoto");
+
+    zoomedPhoto.src =
+        image.src;
+
+    zoomedPhoto.alt =
+        image.alt || "Jillian";
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closePhoto(event) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+        // Don't close when clicking the actual image
+        if (event.target.id === "zoomedPhoto") {
+            return;
+        }
+    }
+
+    const lightbox =
+        document.getElementById("photoLightbox");
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+  
   
 
   
 </script>
 
+
+  <!-- =====================================================
+     PHOTO ZOOM
+===================================================== -->
+
+<div class="photo-lightbox" id="photoLightbox" onclick="closePhoto()">
+
+    <button
+        class="photo-lightbox-close"
+        onclick="closePhoto(event)"
+    >
+        ×
+    </button>
+
+    <img
+        id="zoomedPhoto"
+        src=""
+        alt="Jillian"
+    >
+
+</div>
+
+
+  
 </body>
 </html>
