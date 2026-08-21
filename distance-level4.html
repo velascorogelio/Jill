@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta
+    name="theme-color"
+    content="#05020a"
+>
+
+<title>The Distance Between Us — For You</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    background:
+        #05020a;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game {
+
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 43%,
+            rgba(118, 39, 157, .28),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(82, 31, 111, .18),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            145deg,
+            #020107,
+            #0b0312 48%,
+            #030107
+        );
+
+}
+
+
+/* =====================================================
+   NEBULA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 95vw;
+    height: 95vw;
+
+    max-width: 700px;
+    max-height: 700px;
+
+    left: 50%;
+    top: 48%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(196, 92, 238, .17),
+            rgba(110, 41, 151, .07) 42%,
+            transparent 70%
+        );
+
+    filter:
+        blur(40px);
+
+    animation:
+        nebulaBreath
+        9s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes nebulaBreath {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+        opacity: .5;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================================
+   BACKGROUND STARS
+===================================================== */
+
+#stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.bg-star {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .4;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay);
+
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+
+        opacity: .12;
+
+        transform:
+            scale(.7);
+
+    }
+
+    50% {
+
+        opacity: .85;
+
+        transform:
+            scale(1.3);
+
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        22px 20px 0;
+
+    text-align: center;
+
+}
+
+
+.level {
+
+    color:
+        #a98bb6;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.title {
+
+    margin-top: 8px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            24px,
+            7vw,
+            32px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        #e4b5ff;
+
+    text-shadow:
+        0 0 25px
+        rgba(190, 92, 238, .45);
+
+}
+
+
+.subtitle {
+
+    max-width: 330px;
+
+    margin:
+        9px auto 0;
+
+    color:
+        #a994ad;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 112px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(70%, 270px);
+
+    text-align:
+        center;
+
+}
+
+
+.progress-label {
+
+    color:
+        #82718c;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.progress-track {
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    overflow:
+        hidden;
+
+}
+
+
+.progress-fill {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    border-radius:
+        inherit;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #7433a0,
+            #c966ef,
+            #f0c9ff
+        );
+
+    box-shadow:
+
+        0 0 14px
+        rgba(203,102,239,.7);
+
+    transition:
+
+        width
+        .8s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+/* =====================================================
+   HEART FIELD
+===================================================== */
+
+.heart-field {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width:
+        min(92vw, 430px);
+
+    height:
+        min(92vw, 430px);
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+/* =====================================================
+   CONNECTING SVG
+===================================================== */
+
+.heart-lines {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+}
+
+
+.heart-line {
+
+    stroke:
+        rgba(216,166,249,.65);
+
+    stroke-width:
+        .7;
+
+    fill:
+        none;
+
+    filter:
+
+        drop-shadow(
+            0 0 5px
+            rgba(194,99,239,.7)
+        );
+
+    stroke-dasharray:
+        100;
+
+    stroke-dashoffset:
+        100;
+
+    transition:
+        stroke-dashoffset
+        1s
+        ease;
+
+}
+
+
+.heart-line.show {
+
+    stroke-dashoffset:
+        0;
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.memory-heart {
+
+    position: absolute;
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    transform:
+        translate(-50%, -50%);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    cursor:
+        pointer;
+
+    z-index:
+        10;
+
+    transition:
+        transform
+        .35s ease;
+
+}
+
+
+.memory-heart:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+
+}
+
+
+.memory-heart:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(.9);
+
+}
+
+
+.heart-glow {
+
+    position: absolute;
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(188,91,238,.2);
+
+    filter:
+        blur(12px);
+
+    animation:
+        heartGlow
+        2.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes heartGlow {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.75);
+
+        opacity:
+            .45;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.25);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+.heart-symbol {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    font-size:
+        28px;
+
+    filter:
+
+        drop-shadow(
+            0 0 8px white
+        )
+
+        drop-shadow(
+            0 0 22px #bd5dea
+        )
+
+        drop-shadow(
+            0 0 40px #8e35b7
+        );
+
+    animation:
+        heartFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes heartFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+
+    }
+
+}
+
+
+/* =====================================================
+   POSITIONS
+===================================================== */
+
+#heart1 {
+
+    left: 18%;
+    top: 28%;
+
+}
+
+
+#heart2 {
+
+    left: 78%;
+    top: 23%;
+
+}
+
+
+#heart3 {
+
+    left: 24%;
+    top: 66%;
+
+}
+
+
+#heart4 {
+
+    left: 76%;
+    top: 68%;
+
+}
+
+
+#heart5 {
+
+    left: 50%;
+    top: 47%;
+
+}
+
+
+/* =====================================================
+   DISCOVERED STATE
+===================================================== */
+
+.memory-heart.discovered {
+
+    cursor:
+        default;
+
+}
+
+
+.memory-heart.discovered
+.heart-symbol {
+
+    color:
+        #f1d4ff;
+
+    animation:
+        discoveredHeart
+        .7s
+        ease;
+
+}
+
+
+.memory-heart.discovered
+.heart-glow {
+
+    background:
+        rgba(231,181,255,.45);
+
+}
+
+
+@keyframes discoveredHeart {
+
+    0% {
+
+        transform:
+            scale(1);
+
+    }
+
+    40% {
+
+        transform:
+            scale(1.5);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message-box {
+
+    position: absolute;
+
+    z-index: 30;
+
+    left: 50%;
+
+    bottom:
+        8%;
+
+    width:
+        min(90%, 410px);
+
+    transform:
+        translateX(-50%);
+
+    text-align:
+        center;
+
+    pointer-events:
+        none;
+
+}
+
+
+.message-label {
+
+    color:
+        #9d85a7;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.message {
+
+    min-height:
+        55px;
+
+    color:
+        #e1d3e6;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            16px,
+            5vw,
+            21px
+        );
+
+    line-height:
+        1.5;
+
+    text-shadow:
+        0 0 18px
+        rgba(190,91,238,.2);
+
+    transition:
+        opacity
+        .4s ease,
+        transform
+        .4s ease;
+
+}
+
+
+.message.hide {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(8px);
+
+}
+
+
+/* =====================================================
+   HINT
+===================================================== */
+
+.hint {
+
+    position:
+        absolute;
+
+    z-index:
+        20;
+
+    left:
+        50%;
+
+    top:
+        84%;
+
+    width:
+        90%;
+
+    transform:
+        translateX(-50%);
+
+    text-align:
+        center;
+
+    color:
+        #82708b;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        1px;
+
+    transition:
+        opacity
+        .5s ease;
+
+}
+
+
+/* =====================================================
+   FINAL OVERLAY
+===================================================== */
+
+.complete {
+
+    position:
+        absolute;
+
+    z-index:
+        100;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(3,1,7,.74);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity
+        1.2s
+        ease;
+
+}
+
+
+.complete.show {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+.complete-box {
+
+    width:
+        min(90%, 400px);
+
+    transform:
+        translateY(25px)
+        scale(.9);
+
+    transition:
+        transform
+        1.2s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.complete.show
+.complete-box {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =====================================================
+   FINAL HEART
+===================================================== */
+
+.final-heart {
+
+    font-size:
+        58px;
+
+    filter:
+
+        drop-shadow(
+            0 0 15px white
+        )
+
+        drop-shadow(
+            0 0 35px #ca6cff
+        )
+
+        drop-shadow(
+            0 0 80px #9637c4
+        );
+
+    animation:
+        finalPulse
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes finalPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.9);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL TEXT
+===================================================== */
+
+.complete-small {
+
+    margin-top:
+        20px;
+
+    color:
+        #c09ccf;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.complete h2 {
+
+    margin-top:
+        14px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            35px,
+            11vw,
+            55px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        #e7baff;
+
+    text-shadow:
+        0 0 30px
+        rgba(194,92,238,.5);
+
+}
+
+
+.complete p {
+
+    margin-top:
+        18px;
+
+    color:
+        #d0bfd6;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.8;
+
+}
+
+
+.complete strong {
+
+    color:
+        #e6b8ff;
+
+}
+
+
+.next {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    height:
+        52px;
+
+    margin-top:
+        27px;
+
+    padding:
+        0 28px;
+
+    border-radius:
+        50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #b75ce5,
+            #71329b
+        );
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+
+        0 12px 45px
+        rgba(167,72,215,.4);
+
+    transition:
+        transform
+        .25s ease;
+
+}
+
+
+.next:active {
+
+    transform:
+        scale(.95);
+
+}
+
+
+/* =====================================================
+   MOBILE HEIGHT
+===================================================== */
+
+@media (max-height: 700px) {
+
+    .header {
+
+        padding-top:
+            17px;
+
+    }
+
+
+    .progress {
+
+        top:
+            98px;
+
+    }
+
+
+    .heart-field {
+
+        top:
+            48%;
+
+    }
+
+
+    .message-box {
+
+        bottom:
+            6%;
+
+    }
+
+
+    .hint {
+
+        top:
+            82%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game" id="game">
+
+
+    <div class="nebula"></div>
+
+    <div id="stars"></div>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <header class="header">
+
+        <div class="level">
+            LEVEL 04
+        </div>
+
+        <div class="title">
+            For You
+        </div>
+
+        <p class="subtitle">
+
+            Some things don't need
+            to be big to matter.
+
+        </p>
+
+    </header>
+
+
+    <!-- =================================================
+         PROGRESS
+    ================================================= -->
+
+    <div class="progress">
+
+        <div class="progress-label">
+            Little things
+        </div>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         HEART FIELD
+    ================================================= -->
+
+    <div
+        class="heart-field"
+        id="heartField"
+    >
+
+
+        <svg
+            class="heart-lines"
+            id="heartLines"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+        ></svg>
+
+
+        <!-- HEART 1 -->
+
+        <button
+            class="memory-heart"
+            id="heart1"
+            data-message="You make ordinary days feel a little more special. 💜"
+            aria-label="Little thing one"
+        >
+
+            <div class="heart-glow"></div>
+
+            <div class="heart-symbol">
+                💜
+            </div>
+
+        </button>
+
+
+        <!-- HEART 2 -->
+
+        <button
+            class="memory-heart"
+            id="heart2"
+            data-message="I hope you know that you cross my mind more often than you probably realize. 🥹"
+            aria-label="Little thing two"
+        >
+
+            <div class="heart-glow"></div>
+
+            <div class="heart-symbol">
+                💜
+            </div>
+
+        </button>
+
+
+        <!-- HEART 3 -->
+
+        <button
+            class="memory-heart"
+            id="heart3"
+            data-message="Even from far away, somehow you still feel close. 🌙"
+            aria-label="Little thing three"
+        >
+
+            <div class="heart-glow"></div>
+
+            <div class="heart-symbol">
+                💜
+            </div>
+
+        </button>
+
+
+        <!-- HEART 4 -->
+
+        <button
+            class="memory-heart"
+            id="heart4"
+            data-message="You don't have to do anything special to make me happy. Just being you is enough. ✨"
+            aria-label="Little thing four"
+        >
+
+            <div class="heart-glow"></div>
+
+            <div class="heart-symbol">
+                💜
+            </div>
+
+        </button>
+
+
+        <!-- HEART 5 -->
+
+        <button
+            class="memory-heart"
+            id="heart5"
+            data-message="And if this little thing makes you smile... then it was already worth making. 🥹💜"
+            aria-label="Little thing five"
+        >
+
+            <div class="heart-glow"></div>
+
+            <div class="heart-symbol">
+                💜
+            </div>
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         MESSAGE
+    ================================================= -->
+
+    <div
+        class="message-box"
+        id="messageBox"
+    >
+
+        <div class="message-label">
+            A little something
+        </div>
+
+        <div
+            class="message"
+            id="message"
+        >
+            There are five little things
+            waiting for you.
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         HINT
+    ================================================= -->
+
+    <div
+        class="hint"
+        id="hint"
+    >
+
+        Tap the glowing hearts.
+        <br>
+        I left something inside each one. 💜
+
+    </div>
+
+
+    <!-- =================================================
+         COMPLETE
+    ================================================= -->
+
+    <section
+        class="complete"
+        id="complete"
+    >
+
+        <div class="complete-box">
+
+
+            <div class="final-heart">
+                💜
+            </div>
+
+
+            <div class="complete-small">
+                ALL THE LITTLE THINGS
+            </div>
+
+
+            <h2>
+                There you are.
+            </h2>
+
+
+            <p>
+
+                That's the smile I wanted.
+
+                <br><br>
+
+                I hope you know how
+                <strong>special you are to me.</strong>
+
+            </p>
+
+
+            <a
+                class="next"
+                href="distance-level5.html"
+            >
+
+                CONTINUE →
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   BACKGROUND STARS
+===================================================== */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+const starCount =
+    window.innerWidth < 600
+        ? 100
+        : 160;
+
+
+for (
+    let i = 0;
+    i < starCount;
+    i++
+) {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+
+    star.className =
+        "bg-star";
+
+
+    const size =
+        Math.random() * 2 + .5;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    star.style.setProperty(
+        "--duration",
+        (3 + Math.random() * 5) + "s"
+    );
+
+
+    star.style.setProperty(
+        "--delay",
+        (-Math.random() * 5) + "s"
+    );
+
+
+    stars.appendChild(
+        star
+    );
+
+}
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const hearts =
+    document.querySelectorAll(
+        ".memory-heart"
+    );
+
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const hint =
+    document.getElementById(
+        "hint"
+    );
+
+
+const complete =
+    document.getElementById(
+        "complete"
+    );
+
+
+const heartField =
+    document.getElementById(
+        "heartField"
+    );
+
+
+const heartLines =
+    document.getElementById(
+        "heartLines"
+    );
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+const discovered =
+    new Set();
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(
+    text
+) {
+
+    message.classList.add(
+        "hide"
+    );
+
+
+    setTimeout(
+        function() {
+
+            message.textContent =
+                text;
+
+            message.classList.remove(
+                "hide"
+            );
+
+        },
+        250
+    );
+
+}
+
+
+/* =====================================================
+   GET HEART POSITION
+===================================================== */
+
+function getPosition(
+    element
+) {
+
+    const fieldRect =
+        heartField.getBoundingClientRect();
+
+
+    const rect =
+        element.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            (
+                rect.left +
+                rect.width / 2 -
+                fieldRect.left
+            )
+            /
+            fieldRect.width
+            * 100,
+
+        y:
+            (
+                rect.top +
+                rect.height / 2 -
+                fieldRect.top
+            )
+            /
+            fieldRect.height
+            * 100
+
+    };
+
+}
+
+
+/* =====================================================
+   CONNECT HEARTS
+===================================================== */
+
+function connectHearts() {
+
+    heartLines.innerHTML =
+        "";
+
+
+    const order = [
+
+        "heart1",
+        "heart2",
+        "heart5",
+        "heart3",
+        "heart4",
+        "heart5"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < order.length - 1;
+        i++
+    ) {
+
+        const first =
+            document.getElementById(
+                order[i]
+            );
+
+
+        const second =
+            document.getElementById(
+                order[i + 1]
+            );
+
+
+        const a =
+            getPosition(
+                first
+            );
+
+
+        const b =
+            getPosition(
+                second
+            );
+
+
+        const line =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            a.x
+        );
+
+
+        line.setAttribute(
+            "y1",
+            a.y
+        );
+
+
+        line.setAttribute(
+            "x2",
+            b.x
+        );
+
+
+        line.setAttribute(
+            "y2",
+            b.y
+        );
+
+
+        line.classList.add(
+            "heart-line"
+        );
+
+
+        heartLines.appendChild(
+            line
+        );
+
+
+        setTimeout(
+            function() {
+
+                line.classList.add(
+                    "show"
+                );
+
+            },
+            i * 180
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DISCOVER HEART
+===================================================== */
+
+function discoverHeart(
+    heart
+) {
+
+    const id =
+        heart.id;
+
+
+    if (
+        discovered.has(id)
+    ) {
+
+        return;
+
+    }
+
+
+    discovered.add(
+        id
+    );
+
+
+    heart.classList.add(
+        "discovered"
+    );
+
+
+    const text =
+        heart.dataset.message;
+
+
+    showMessage(
+        text
+    );
+
+
+    const percent =
+        (
+            discovered.size /
+            hearts.length
+        )
+        * 100;
+
+
+    progressFill.style.width =
+        percent + "%";
+
+
+    /*
+       Once everything is
+       discovered, finish.
+    */
+
+    if (
+        discovered.size ===
+        hearts.length
+    ) {
+
+        finishLevel();
+
+    }
+
+}
+
+
+/* =====================================================
+   HEART CLICK
+===================================================== */
+
+hearts.forEach(
+    function(heart) {
+
+        heart.addEventListener(
+            "click",
+            function() {
+
+                discoverHeart(
+                    heart
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   COMPLETE LEVEL
+===================================================== */
+
+function finishLevel() {
+
+    hint.textContent =
+        "You found them all. 💜";
+
+
+    hint.style.opacity =
+        "0";
+
+
+    showMessage(
+        "Maybe the little things are the ones that matter most."
+    );
+
+
+    /*
+       Connect the hearts
+       after a short pause.
+    */
+
+    setTimeout(
+        function() {
+
+            connectHearts();
+
+        },
+        600
+    );
+
+
+    /*
+       Final reveal.
+    */
+
+    setTimeout(
+        function() {
+
+            complete.classList.add(
+                "show"
+            );
+
+        },
+        2200
+    );
+
+}
+
+
+/* =====================================================
+   INITIAL MESSAGE
+===================================================== */
+
+message.textContent =
+    "There are five little things waiting for you.";
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (
+            discovered.size ===
+            hearts.length
+        ) {
+
+            connectHearts();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

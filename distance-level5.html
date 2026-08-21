@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta
+    name="theme-color"
+    content="#05020a"
+>
+
+<title>The Distance Between Us — Our Story</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    background:
+        #05020a;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game {
+
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(119, 42, 158, .28),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(91, 30, 123, .18),
+            transparent 40%
+        ),
+
+        linear-gradient(
+            145deg,
+            #020107,
+            #0c0313 50%,
+            #030107
+        );
+}
+
+
+/* =====================================================
+   NEBULA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 110vw;
+    height: 110vw;
+
+    max-width: 800px;
+    max-height: 800px;
+
+    left: 50%;
+    top: 48%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(194, 85, 237, .18),
+            rgba(105, 35, 145, .07) 42%,
+            transparent 70%
+        );
+
+    filter:
+        blur(45px);
+
+    animation:
+        nebulaBreath
+        10s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes nebulaBreath {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+        opacity: .5;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+#stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.star {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .35;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay);
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+
+        opacity: .1;
+
+        transform:
+            scale(.7);
+
+    }
+
+    50% {
+
+        opacity: .85;
+
+        transform:
+            scale(1.35);
+
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        20px 20px 0;
+
+    text-align: center;
+
+}
+
+
+.level {
+
+    color:
+        #a98bb6;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.title {
+
+    margin-top:
+        8px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            25px,
+            8vw,
+            34px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        #e6b8ff;
+
+    text-shadow:
+        0 0 30px
+        rgba(190, 92, 238, .5);
+
+}
+
+
+/* =====================================================
+   STORY AREA
+===================================================== */
+
+.story {
+
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: 51%;
+
+    width:
+        min(90%, 430px);
+
+    height:
+        62%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+}
+
+
+/* =====================================================
+   STORY CARD
+===================================================== */
+
+.story-card {
+
+    width: 100%;
+
+    max-height: 100%;
+
+    padding:
+        30px 25px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        rgba(215, 165, 255, .13);
+
+    border-radius:
+        28px;
+
+    background:
+        rgba(17, 5, 25, .45);
+
+    box-shadow:
+
+        inset 0 0 60px
+        rgba(170, 70, 220, .025),
+
+        0 25px 80px
+        rgba(0, 0, 0, .35);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+}
+
+
+/* =====================================================
+   MEMORY ICON
+===================================================== */
+
+.memory-icon {
+
+    font-size:
+        38px;
+
+    min-height:
+        45px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(191, 90, 237, .7)
+        );
+
+    animation:
+        iconFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes iconFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+
+    }
+
+}
+
+
+/* =====================================================
+   STORY LABEL
+===================================================== */
+
+.story-label {
+
+    margin-top:
+        14px;
+
+    color:
+        #c29ad0;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =====================================================
+   STORY TITLE
+===================================================== */
+
+.story-title {
+
+    margin-top:
+        13px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            27px,
+            8vw,
+            37px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        #e8bcff;
+
+    text-shadow:
+        0 0 25px
+        rgba(195, 91, 239, .45);
+
+}
+
+
+/* =====================================================
+   STORY TEXT
+===================================================== */
+
+.story-text {
+
+    margin-top:
+        20px;
+
+    color:
+        #d6c5dc;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+
+}
+
+
+.story-text strong {
+
+    color:
+        #e5b4ff;
+
+}
+
+
+/* =====================================================
+   STORY PROGRESS
+===================================================== */
+
+.story-progress {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    bottom:
+        5%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(55%, 230px);
+
+}
+
+
+.progress-label {
+
+    text-align:
+        center;
+
+    color:
+        #77647f;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.progress-track {
+
+    width: 100%;
+
+    height: 3px;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    overflow:
+        hidden;
+
+}
+
+
+.progress-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7433a0,
+            #c966ef,
+            #f0c9ff
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(203, 102, 239, .7);
+
+    transition:
+        width .7s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
+.next {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        min(100%, 280px);
+
+    height:
+        52px;
+
+    margin-top:
+        25px;
+
+    border-radius:
+        50px;
+
+    border:
+        none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b75ce5,
+            #71329b
+        );
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        0 12px 45px
+        rgba(167, 72, 215, .4);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.next:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 55px
+        rgba(167, 72, 215, .6);
+
+}
+
+
+.next:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+/* =====================================================
+   CONTINUE BUTTON
+===================================================== */
+
+.continue-wrap {
+
+    margin-top:
+        23px;
+
+}
+
+
+.continue-text {
+
+    color:
+        #9c86a5;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =====================================================
+   TRANSITIONS
+===================================================== */
+
+.story-card.fade-out {
+
+    animation:
+        fadeOut
+        .45s
+        ease
+        forwards;
+
+}
+
+
+.story-card.fade-in {
+
+    animation:
+        fadeIn
+        .65s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes fadeOut {
+
+    from {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+    to {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-12px)
+            scale(.97);
+
+        filter:
+            blur(6px);
+
+    }
+
+}
+
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px)
+            scale(.97);
+
+        filter:
+            blur(6px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
+.final {
+
+    position:
+        absolute;
+
+    z-index:
+        100;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(3,1,7,.78);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity 1.5s ease;
+
+}
+
+
+.final.show {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+.final-box {
+
+    width:
+        min(92%, 420px);
+
+    transform:
+        translateY(30px)
+        scale(.92);
+
+    transition:
+        transform 1.3s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.final.show
+.final-box {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =====================================================
+   FINAL HEART
+===================================================== */
+
+.final-heart {
+
+    font-size:
+        58px;
+
+    filter:
+        drop-shadow(
+            0 0 20px #d071ff
+        )
+        drop-shadow(
+            0 0 60px #9b3dca
+        );
+
+    animation:
+        finalPulse
+        2.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes finalPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.9);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL LABEL
+===================================================== */
+
+.final-label {
+
+    margin-top:
+        20px;
+
+    color:
+        #c29bd1;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =====================================================
+   FINAL TITLE
+===================================================== */
+
+.final h2 {
+
+    margin-top:
+        13px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            32px,
+            10vw,
+            52px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        #e8baff;
+
+    text-shadow:
+        0 0 30px
+        rgba(194, 92, 238, .6);
+
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+.final-message {
+
+    margin-top:
+        20px;
+
+    color:
+        #d5c4db;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+
+}
+
+
+.final-message strong {
+
+    color:
+        #e5b4ff;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-height: 700px) {
+
+    .header {
+
+        padding-top:
+            15px;
+
+    }
+
+    .story {
+
+        top:
+            51%;
+
+        height:
+            63%;
+
+    }
+
+    .story-card {
+
+        padding:
+            22px 20px;
+
+    }
+
+    .story-text {
+
+        margin-top:
+            14px;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.7;
+
+    }
+
+    .story-progress {
+
+        bottom:
+            2%;
+
+    }
+
+}
+
+
+@media (max-height: 600px) {
+
+    .story {
+
+        height:
+            68%;
+
+    }
+
+    .story-card {
+
+        padding:
+            17px 18px;
+
+    }
+
+    .memory-icon {
+
+        font-size:
+            30px;
+
+    }
+
+    .story-title {
+
+        font-size:
+            25px;
+
+    }
+
+    .story-text {
+
+        font-size:
+            11px;
+
+        line-height:
+            1.55;
+
+    }
+
+    .next {
+
+        height:
+            46px;
+
+        margin-top:
+            15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game">
+
+
+    <div class="nebula"></div>
+
+    <div id="stars"></div>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <header class="header">
+
+        <div class="level">
+            LEVEL 05
+        </div>
+
+        <div class="title">
+            Our Story
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         STORY
+    ================================================= -->
+
+    <main class="story">
+
+        <div
+            class="story-card"
+            id="storyCard"
+        >
+
+            <div
+                class="memory-icon"
+                id="memoryIcon"
+            >
+                🎵
+            </div>
+
+
+            <div
+                class="story-label"
+                id="storyLabel"
+            >
+                WHERE IT STARTED
+            </div>
+
+
+            <h1
+                class="story-title"
+                id="storyTitle"
+            >
+                Two strangers.
+            </h1>
+
+
+            <p
+                class="story-text"
+                id="storyText"
+            >
+                Nung una tayong nagkakilala sa
+                <strong>TikTok</strong>...
+                hindi pa pala talaga tayo
+                magkakilala that time. 🥲
+            </p>
+
+
+            <button
+                class="next"
+                id="nextButton"
+                type="button"
+            >
+                KEEP READING ✦
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =================================================
+         PROGRESS
+    ================================================= -->
+
+    <div class="story-progress">
+
+        <div
+            class="progress-label"
+            id="progressLabel"
+        >
+            Our story
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FINAL
+    ================================================= -->
+
+    <section
+        class="final"
+        id="final"
+    >
+
+        <div class="final-box">
+
+
+            <div class="final-heart">
+                ♾️💜
+            </div>
+
+
+            <div class="final-label">
+                THE BEGINNING OF FOREVER
+            </div>
+
+
+            <h2>
+                Our little universe.
+            </h2>
+
+
+            <p class="final-message">
+
+                From two strangers on TikTok...
+
+                <br><br>
+
+                to everything we are now.
+
+                <br><br>
+
+                I miss you
+                <strong>everyday.</strong>
+
+                <br>
+
+                I love you
+                <strong>to infinity and beyond.</strong>
+
+                <br><br>
+
+                And no matter how far apart
+                we are...
+
+                <br><br>
+
+                <strong>
+                    I'll keep choosing you.
+                </strong>
+
+            </p>
+
+
+            <a
+                class="next"
+                href="universe.html"
+            >
+                ENTER OUR UNIVERSE ✦
+            </a>
+
+
+            <div class="continue-wrap">
+
+                <div class="continue-text">
+                    This is only the beginning. 💜
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BACKGROUND STARS
+===================================================== */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+const starCount =
+    window.innerWidth < 600
+        ? 120
+        : 180;
+
+
+for (
+    let i = 0;
+    i < starCount;
+    i++
+) {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+
+    star.className =
+        "star";
+
+
+    const size =
+        Math.random() * 2 + .5;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    star.style.setProperty(
+        "--duration",
+        (3 + Math.random() * 5) + "s"
+    );
+
+
+    star.style.setProperty(
+        "--delay",
+        (-Math.random() * 5) + "s"
+    );
+
+
+    stars.appendChild(
+        star
+    );
+
+}
+
+
+/* =====================================================
+   STORY DATA
+===================================================== */
+
+const story = [
+
+    {
+
+        icon:
+            "🎵",
+
+        label:
+            "WHERE IT STARTED",
+
+        title:
+            "Two strangers.",
+
+        text:
+            `Nung una tayong nagkakilala sa
+            <strong>TikTok</strong>...
+            hindi pa pala talaga tayo
+            magkakilala that time. 🥲
+            <br><br>
+            I honestly thought magiging
+            simple streak lang tayo.`
+
+    },
+
+
+    {
+
+        icon:
+            "🥲",
+
+        label:
+            "THEN SOMETHING CHANGED",
+
+        title:
+            "The little things.",
+
+        text:
+            `We started talking more...
+            and somehow, yung dating
+            parang <strong>nira-rage bait lang kita</strong>
+            became something I never expected.
+            <br><br>
+            Hindi ko namalayan na
+            unti-unti na pala kitang
+            nagiging important sa buhay ko.`
+
+    },
+
+
+    {
+
+        icon:
+            "💜",
+
+        label:
+            "SOMEWHERE ALONG THE WAY",
+
+        title:
+            "We became us.",
+
+        text:
+            `From random conversations,
+            jokes, and little moments...
+            we slowly became closer.
+            <br><br>
+            And then one day,
+            hindi na lang tayo strangers.
+            <br><br>
+            <strong>We became lovers.</strong> 🥹💜`
+
+    },
+
+
+    {
+
+        icon:
+            "🌧️",
+
+        label:
+            "WE WEREN'T PERFECT",
+
+        title:
+            "We had our storms.",
+
+        text:
+            `Hindi naging perfect ang lahat.
+            May misunderstandings.
+            <br><br>
+            And even when we separated
+            for a few days...
+            <br><br>
+            <strong>
+                I never stopped thinking about you.
+            </strong>`
+
+    },
+
+
+    {
+
+        icon:
+            "🌙",
+
+        label:
+            "THOSE DAYS",
+
+        title:
+            "I missed you.",
+
+        text:
+            `Everyday.
+            Every hour.
+            Every minute.
+            Every second.
+            <br><br>
+            Hindi talaga kita matanggal
+            sa isip ko.
+            <br><br>
+            I missed you
+            <strong>sooooo muchhhh</strong>
+            more than you'll ever know.`
+
+    },
+
+
+    {
+
+        icon:
+            "🌌",
+
+        label:
+            "EVEN WITH THE DISTANCE",
+
+        title:
+            "You're still here.",
+
+        text:
+            `We're far from each other,
+            pero somehow...
+            I can still feel like
+            you're right beside me.
+            <br><br>
+            Every conversation,
+            every laugh,
+            every little memory...
+            <br><br>
+            <strong>
+                makes the distance feel smaller.
+            </strong>`
+
+    },
+
+
+    {
+
+        icon:
+            "✨",
+
+        label:
+            "LOOK AT US NOW",
+
+        title:
+            "We're building memories.",
+
+        text:
+            `From two strangers on TikTok
+            to two people building
+            their own little universe.
+            <br><br>
+            Kahit malayo tayo,
+            we're still creating memories
+            one moment at a time.
+            <br><br>
+            And honestly...
+            <strong>
+            I wouldn't trade this story
+            for anything.
+            </strong>`
+
+    },
+
+
+    {
+
+        icon:
+            "♾️",
+
+        label:
+            "WHAT I WANT YOU TO KNOW",
+
+        title:
+            "I choose you.",
+
+        text:
+            `I don't know what else to say
+            because sometimes words
+            aren't enough.
+            <br><br>
+            I just want you to know
+            how grateful I am
+            that I met you.
+            <br><br>
+            And after everything we've been through,
+            <strong>
+            I'm still here.
+            </strong>
+            <br><br>
+            Still choosing you.`
+
+    },
+
+
+    {
+
+        icon:
+            "💜",
+
+        label:
+            "AND FINALLY...",
+
+        title:
+            "I love you.",
+
+        text:
+            `<strong>
+            I MISS YOU EVERYDAYYYY.
+            </strong>
+            <br><br>
+            I LOVE YOU SOOOOO MUCHHH.
+            <br><br>
+            To infinity...
+            <br>
+            <strong>
+            AND BEYONDDDD.
+            </strong>
+            <br><br>
+            My love. ♾️💜`
+
+    }
+
+];
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const storyCard =
+    document.getElementById(
+        "storyCard"
+    );
+
+
+const memoryIcon =
+    document.getElementById(
+        "memoryIcon"
+    );
+
+
+const storyLabel =
+    document.getElementById(
+        "storyLabel"
+    );
+
+
+const storyTitle =
+    document.getElementById(
+        "storyTitle"
+    );
+
+
+const storyText =
+    document.getElementById(
+        "storyText"
+    );
+
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+
+const progressLabel =
+    document.getElementById(
+        "progressLabel"
+    );
+
+
+const final =
+    document.getElementById(
+        "final"
+    );
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let current =
+    0;
+
+
+/* =====================================================
+   SHOW STORY
+===================================================== */
+
+function showStory(
+    index
+) {
+
+    const item =
+        story[index];
+
+
+    memoryIcon.textContent =
+        item.icon;
+
+
+    storyLabel.textContent =
+        item.label;
+
+
+    storyTitle.textContent =
+        item.title;
+
+
+    storyText.innerHTML =
+        item.text;
+
+
+    /*
+       Update progress.
+    */
+
+    const percent =
+        (
+            (index + 1) /
+            story.length
+        ) * 100;
+
+
+    progressFill.style.width =
+        percent + "%";
+
+
+    progressLabel.textContent =
+        `Chapter ${index + 1} of ${story.length}`;
+
+
+    /*
+       Last chapter.
+    */
+
+    if (
+        index ===
+        story.length - 1
+    ) {
+
+        nextButton.textContent =
+            "FINISH OUR STORY ♾️";
+
+    }
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+nextButton.addEventListener(
+    "click",
+    function() {
+
+
+        /*
+           Last story page.
+        */
+
+        if (
+            current >=
+            story.length - 1
+        ) {
+
+            storyCard.classList.add(
+                "fade-out"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    final.classList.add(
+                        "show"
+                    );
+
+                },
+                500
+            );
+
+
+            return;
+
+        }
+
+
+        /*
+           Fade current story out.
+        */
+
+        storyCard.classList.remove(
+            "fade-in"
+        );
+
+        storyCard.classList.add(
+            "fade-out"
+        );
+
+
+        setTimeout(
+            function() {
+
+                current++;
+
+
+                showStory(
+                    current
+                );
+
+
+                storyCard.classList.remove(
+                    "fade-out"
+                );
+
+
+                void storyCard.offsetWidth;
+
+
+                storyCard.classList.add(
+                    "fade-in"
+                );
+
+            },
+            450
+        );
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+showStory(
+    current
+);
+
+
+requestAnimationFrame(
+    function() {
+
+        storyCard.classList.add(
+            "fade-in"
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

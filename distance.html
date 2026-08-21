@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#05020a"
+>
+
+<title>The Distance Between Us 💜</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #05020a;
+
+    color: white;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game {
+
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            #321044 0%,
+            #12051c 35%,
+            #05020a 75%
+        );
+
+}
+
+
+/* =====================================================
+   NEBULA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 80vw;
+    height: 80vw;
+
+    max-width: 650px;
+    max-height: 650px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(181, 92, 232, .18),
+            rgba(117, 43, 158, .08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        breathe
+        8s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes breathe {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+        opacity: .5;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================================
+   STAR FIELD
+===================================================== */
+
+#stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.star {
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .4;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay);
+
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+
+        opacity: .15;
+
+        transform:
+            scale(.7);
+
+    }
+
+    50% {
+
+        opacity: .9;
+
+        transform:
+            scale(1.4);
+
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        28px 20px;
+
+    text-align: center;
+
+}
+
+
+.level {
+
+    color:
+        #a989b8;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+}
+
+
+.title {
+
+    margin-top: 10px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(22px, 7vw, 32px);
+
+    font-weight: normal;
+
+    color:
+        #e4b4ff;
+
+    text-shadow:
+        0 0 25px
+        rgba(184, 91, 232, .45);
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    top: 47%;
+
+    width:
+        min(88%, 430px);
+
+    transform:
+        translate(-50%, -50%);
+
+    text-align: center;
+
+    pointer-events: none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+}
+
+
+.intro.hide {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -55%)
+        scale(.96);
+
+}
+
+
+.intro-small {
+
+    color:
+        #b99bc6;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.intro h1 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(35px, 11vw, 58px);
+
+    font-weight: normal;
+
+    color:
+        #f0d5ff;
+
+    text-shadow:
+
+        0 0 20px
+        rgba(194, 106, 240, .35),
+
+        0 0 60px
+        rgba(158, 61, 202, .2);
+
+}
+
+
+.intro p {
+
+    margin-top: 18px;
+
+    color:
+        #c9b8d0;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   FIND MESSAGE
+===================================================== */
+
+.find-message {
+
+    position: absolute;
+
+    z-index: 8;
+
+    left: 50%;
+    bottom: 9%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(90%, 400px);
+
+    text-align: center;
+
+    pointer-events: none;
+
+}
+
+
+.find-message p {
+
+    color:
+        #aa94b5;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+
+.find-message .hint {
+
+    margin-top: 8px;
+
+    color:
+        #d6b5e5;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   SPECIAL STAR
+===================================================== */
+
+.target {
+
+    position: absolute;
+
+    z-index: 20;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        transform .2s ease;
+
+}
+
+
+/* outer glow */
+
+.target::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(198, 108, 255, .15);
+
+    box-shadow:
+
+        0 0 15px
+        rgba(198, 108, 255, .8),
+
+        0 0 40px
+        rgba(171, 72, 229, .55),
+
+        0 0 80px
+        rgba(149, 52, 207, .25);
+
+    animation:
+        targetPulse
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes targetPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.65);
+
+        opacity: .45;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.25);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* actual star */
+
+.target::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color:
+        #fff;
+
+    font-size: 22px;
+
+    text-shadow:
+
+        0 0 8px white,
+
+        0 0 20px #d68aff,
+
+        0 0 45px #a84dde;
+
+}
+
+
+.target:active {
+
+    transform:
+        translate(-50%, -50%)
+        scale(.8);
+
+}
+
+
+/* =====================================================
+   SUCCESS
+===================================================== */
+
+.success {
+
+    position: absolute;
+
+    z-index: 50;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        rgba(5, 2, 10, .35);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .8s ease;
+
+}
+
+
+.success.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+.success-box {
+
+    width:
+        min(90%, 400px);
+
+    transform:
+        translateY(25px)
+        scale(.96);
+
+    transition:
+        transform 1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.success.show
+.success-box {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.success-star {
+
+    font-size: 48px;
+
+    color:
+        #e9c4ff;
+
+    text-shadow:
+
+        0 0 15px white,
+
+        0 0 35px #c66cff,
+
+        0 0 80px #9b3fd0;
+
+    animation:
+        successPulse
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes successPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.9);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.1);
+
+    }
+
+}
+
+
+.success-small {
+
+    margin-top: 20px;
+
+    color:
+        #bd9bca;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.success h2 {
+
+    margin-top: 15px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(38px, 11vw, 58px);
+
+    font-weight:
+        normal;
+
+    color:
+        #e8b8ff;
+
+    text-shadow:
+        0 0 35px
+        rgba(188, 84, 236, .5);
+
+}
+
+
+.success p {
+
+    margin-top: 20px;
+
+    color:
+        #d4c3da;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+}
+
+
+.continue {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    height: 52px;
+
+    margin-top: 28px;
+
+    padding:
+        0 28px;
+
+    border: 1px solid
+        rgba(210, 147, 245, .25);
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a94fd3,
+            #71329b
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 12px 40px
+        rgba(157, 69, 205, .3);
+
+    transition:
+        transform .25s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.continue:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 18px 55px
+        rgba(157, 69, 205, .5);
+
+}
+
+
+.continue:active {
+
+    transform:
+        scale(.95);
+
+}
+
+
+/* =====================================================
+   STAR BURST
+===================================================== */
+
+.burst {
+
+    position: absolute;
+
+    z-index: 40;
+
+    left: var(--x);
+    top: var(--y);
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 20px white,
+        0 0 50px #c46cff;
+
+    pointer-events: none;
+
+    animation:
+        burst
+        1.3s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes burst {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.3);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(18);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-height: 650px) {
+
+    .header {
+
+        padding-top: 18px;
+
+    }
+
+    .intro {
+
+        top: 45%;
+
+    }
+
+    .find-message {
+
+        bottom: 5%;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game" id="game">
+
+
+    <!-- NEBULA -->
+
+    <div class="nebula"></div>
+
+
+    <!-- STARS -->
+
+    <div id="stars"></div>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="level">
+            LEVEL 01
+        </div>
+
+        <div class="title">
+            The Distance Between Us
+        </div>
+
+    </header>
+
+
+    <!-- INTRO -->
+
+    <section
+        class="intro"
+        id="intro"
+    >
+
+        <div class="intro-small">
+            TWO PLACES
+        </div>
+
+        <h1>
+            Find Me
+        </h1>
+
+        <p>
+            Somewhere in this universe...
+            <br>
+            I'm looking for you.
+        </p>
+
+    </section>
+
+
+    <!-- FIND MESSAGE -->
+
+    <div class="find-message">
+
+        <p>
+            Look carefully
+        </p>
+
+        <div class="hint">
+            There is one star waiting for you. ✦
+        </div>
+
+    </div>
+
+
+    <!-- TARGET STAR -->
+
+    <div
+        class="target"
+        id="target"
+        aria-label="Find the special star"
+    ></div>
+
+
+    <!-- SUCCESS -->
+
+    <section
+        class="success"
+        id="success"
+    >
+
+        <div class="success-box">
+
+            <div class="success-star">
+                ✦
+            </div>
+
+            <div class="success-small">
+                CONNECTION FOUND
+            </div>
+
+            <h2>
+                You Found Me 🥹.
+            </h2>
+
+            <p>
+                Even from far away...
+                <br>
+                You still know where to find me. 💜
+            </p>
+
+            <a
+                class="continue"
+                href="distance-level2.html"
+            >
+                CONTINUE →
+            </a>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CREATE STAR FIELD
+===================================================== */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+const starCount =
+    window.innerWidth < 600
+        ? 110
+        : 170;
+
+
+for (
+    let i = 0;
+    i < starCount;
+    i++
+) {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+
+    star.className =
+        "star";
+
+
+    const size =
+        Math.random() * 2 + .5;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    star.style.setProperty(
+        "--duration",
+        (3 + Math.random() * 5) + "s"
+    );
+
+
+    star.style.setProperty(
+        "--delay",
+        (-Math.random() * 5) + "s"
+    );
+
+
+    stars.appendChild(
+        star
+    );
+
+}
+
+
+/* =====================================================
+   TARGET POSITION
+===================================================== */
+
+const target =
+    document.getElementById(
+        "target"
+    );
+
+
+function placeTarget() {
+
+    /*
+       Keep the target away from the
+       header and bottom instructions.
+    */
+
+    const minX =
+        12;
+
+    const maxX =
+        88;
+
+    const minY =
+        25;
+
+    const maxY =
+        72;
+
+
+    const x =
+        minX +
+        Math.random() *
+        (maxX - minX);
+
+
+    const y =
+        minY +
+        Math.random() *
+        (maxY - minY);
+
+
+    target.style.left =
+        x + "%";
+
+
+    target.style.top =
+        y + "%";
+
+}
+
+
+placeTarget();
+
+
+/* =====================================================
+   INTRO DELAY
+===================================================== */
+
+const intro =
+    document.getElementById(
+        "intro"
+    );
+
+
+setTimeout(
+    function() {
+
+        intro.classList.add(
+            "hide"
+        );
+
+    },
+    3800
+);
+
+
+/* =====================================================
+   FIND STAR
+===================================================== */
+
+const success =
+    document.getElementById(
+        "success"
+    );
+
+
+const game =
+    document.getElementById(
+        "game"
+    );
+
+
+target.addEventListener(
+    "click",
+    function() {
+
+        /*
+           Prevent double clicking.
+        */
+
+        target.style.pointerEvents =
+            "none";
+
+
+        /*
+           Get target position.
+        */
+
+        const rect =
+            target.getBoundingClientRect();
+
+
+        const x =
+            rect.left +
+            rect.width / 2;
+
+
+        const y =
+            rect.top +
+            rect.height / 2;
+
+
+        /*
+           Create burst.
+        */
+
+        const burst =
+            document.createElement(
+                "div"
+            );
+
+
+        burst.className =
+            "burst";
+
+
+        burst.style.setProperty(
+            "--x",
+            x + "px"
+        );
+
+
+        burst.style.setProperty(
+            "--y",
+            y + "px"
+        );
+
+
+        game.appendChild(
+            burst
+        );
+
+
+        /*
+           Hide target.
+        */
+
+        target.style.transition =
+            "opacity .4s ease";
+
+
+        target.style.opacity =
+            "0";
+
+
+        /*
+           Show success.
+        */
+
+        setTimeout(
+            function() {
+
+                success.classList.add(
+                    "show"
+                );
+
+            },
+            450
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

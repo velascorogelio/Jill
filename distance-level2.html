@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#05020a"
+>
+
+<title>The Distance Between Us — Closer</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    background:
+        #05020a;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+/* =====================================================
+   UNIVERSE
+===================================================== */
+
+.game {
+
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            #351149 0%,
+            #13051d 32%,
+            #05020a 75%
+        );
+
+}
+
+
+/* =====================================================
+   NEBULA
+===================================================== */
+
+.nebula {
+
+    position: absolute;
+
+    width: 85vw;
+    height: 85vw;
+
+    max-width: 700px;
+    max-height: 700px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(188, 91, 238, .18),
+            rgba(121, 43, 163, .08) 40%,
+            transparent 70%
+        );
+
+    filter:
+        blur(35px);
+
+    animation:
+        breathe
+        8s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes breathe {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+        opacity: .55;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+#stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.star {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .4;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay);
+
+}
+
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+
+        opacity: .15;
+
+        transform:
+            scale(.7);
+
+    }
+
+    50% {
+
+        opacity: .8;
+
+        transform:
+            scale(1.3);
+
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        24px 20px 0;
+
+    text-align: center;
+
+}
+
+
+.level {
+
+    color:
+        #a98bb6;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.title {
+
+    margin-top: 9px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(22px, 7vw, 31px);
+
+    font-weight:
+        normal;
+
+    color:
+        #e3b3ff;
+
+    text-shadow:
+        0 0 25px
+        rgba(184, 91, 232, .4);
+
+}
+
+
+/* =====================================================
+   CONNECTION METER
+===================================================== */
+
+.meter {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 95px;
+
+    left: 50%;
+
+    width:
+        min(70%, 280px);
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+}
+
+
+.meter-label {
+
+    color:
+        #8f7b99;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom: 8px;
+
+}
+
+
+.meter-track {
+
+    width: 100%;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    overflow: hidden;
+
+}
+
+
+.meter-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #71319c,
+            #c56bed,
+            #f0c7ff
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(197,107,237,.7);
+
+    transition:
+        width 1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+/* =====================================================
+   DISTANCE FIELD
+===================================================== */
+
+.distance {
+
+    position: absolute;
+
+    left: 50%;
+    top: 41%;
+
+    width: 100%;
+
+    height: 170px;
+
+    transform:
+        translateX(-50%);
+
+}
+
+
+/* =====================================================
+   CONNECTION LINE
+===================================================== */
+
+.connection-line {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 0%;
+
+    height: 1px;
+
+    transform:
+        translateY(-50%);
+
+    transform-origin:
+        left center;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(187,91,238,.1),
+            rgba(216,160,247,.9),
+            rgba(187,91,238,.1)
+        );
+
+    box-shadow:
+
+        0 0 12px
+        rgba(192,98,240,.5);
+
+    transition:
+        width 1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+/* =====================================================
+   PLANETS / STARS
+===================================================== */
+
+.person {
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 65px;
+    height: 65px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    transition:
+        left 1.2s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.person::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #d99aff 20%,
+            #9c43c7 55%,
+            #43145c 100%
+        );
+
+    box-shadow:
+
+        0 0 15px
+        rgba(221,165,255,.9),
+
+        0 0 40px
+        rgba(166,69,220,.6),
+
+        0 0 80px
+        rgba(135,48,180,.3);
+
+}
+
+
+.person::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -15px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(211,158,246,.12);
+
+    animation:
+        planetPulse
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes planetPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.9);
+
+        opacity: .4;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+.person-label {
+
+    position: absolute;
+
+    top: 82px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        #c6aecf;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* initial positions */
+
+#you {
+
+    left: 15%;
+
+}
+
+
+#me {
+
+    left: 85%;
+
+}
+
+
+/* =====================================================
+   QUESTION
+===================================================== */
+
+.question {
+
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    bottom: 8%;
+
+    width:
+        min(92%, 430px);
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+}
+
+
+.question-label {
+
+    color:
+        #967da0;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom: 10px;
+
+}
+
+
+.question-text {
+
+    min-height: 52px;
+
+    color:
+        #e0d2e6;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(16px, 5vw, 21px);
+
+    line-height: 1.45;
+
+}
+
+
+/* =====================================================
+   CHOICES
+===================================================== */
+
+.choices {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 9px;
+
+    margin-top: 17px;
+
+}
+
+
+.choice {
+
+    min-height: 46px;
+
+    padding:
+        8px 10px;
+
+    border:
+        1px solid
+        rgba(211,157,245,.15);
+
+    border-radius:
+        16px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:
+        #d9c7df;
+
+    font-size:
+        11px;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform .25s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.choice:hover {
+
+    border-color:
+        rgba(208,147,246,.4);
+
+    background:
+        rgba(185,91,230,.12);
+
+    box-shadow:
+        0 5px 25px
+        rgba(157,70,205,.15);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.choice:active {
+
+    transform:
+        scale(.96);
+
+}
+
+
+/* =====================================================
+   RESPONSE
+===================================================== */
+
+.response {
+
+    min-height: 18px;
+
+    margin-top: 11px;
+
+    color:
+        #bd9bd0;
+
+    font-size: 10px;
+
+}
+
+
+/* =====================================================
+   SUCCESS OVERLAY
+===================================================== */
+
+.complete {
+
+    position: absolute;
+
+    z-index: 100;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        rgba(5,2,10,.58);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease;
+
+}
+
+
+.complete.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+.complete-box {
+
+    width:
+        min(90%, 400px);
+
+    transform:
+        scale(.9)
+        translateY(20px);
+
+    transition:
+        transform 1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.complete.show
+.complete-box {
+
+    transform:
+        scale(1)
+        translateY(0);
+
+}
+
+
+.complete-star {
+
+    font-size: 55px;
+
+    color:
+        #f1d4ff;
+
+    text-shadow:
+
+        0 0 15px white,
+
+        0 0 35px #ca6cff,
+
+        0 0 80px #9637c4;
+
+    animation:
+        finalPulse
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes finalPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.9);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+
+    }
+
+}
+
+
+.complete-small {
+
+    margin-top: 20px;
+
+    color:
+        #c09ccf;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.complete h2 {
+
+    margin-top: 14px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(35px, 11vw, 55px);
+
+    font-weight:
+        normal;
+
+    color:
+        #e7baff;
+
+    text-shadow:
+        0 0 30px
+        rgba(194,92,238,.5);
+
+}
+
+
+.complete p {
+
+    margin-top: 18px;
+
+    color:
+        #d0bfd6;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+}
+
+
+.next {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    height: 52px;
+
+    margin-top: 27px;
+
+    padding:
+        0 28px;
+
+    border-radius:
+        50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b75ce5,
+            #71329b
+        );
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        0 12px 40px
+        rgba(167,72,215,.35);
+
+    transition:
+        transform .25s ease;
+
+}
+
+
+.next:active {
+
+    transform:
+        scale(.95);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-height: 680px) {
+
+    .meter {
+
+        top: 87px;
+
+    }
+
+    .distance {
+
+        top: 38%;
+
+    }
+
+    .question {
+
+        bottom: 4%;
+
+    }
+
+    .question-text {
+
+        font-size: 15px;
+
+    }
+
+    .choice {
+
+        min-height: 40px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game" id="game">
+
+
+    <div class="nebula"></div>
+
+    <div id="stars"></div>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <header class="header">
+
+        <div class="level">
+            LEVEL 02
+        </div>
+
+        <div class="title">
+            Closer
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONNECTION METER
+    ================================================= -->
+
+    <div class="meter">
+
+        <div class="meter-label">
+            Connection
+        </div>
+
+        <div class="meter-track">
+
+            <div
+                class="meter-fill"
+                id="meterFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TWO PEOPLE
+    ================================================= -->
+
+    <div class="distance">
+
+        <div
+            class="connection-line"
+            id="connectionLine"
+        ></div>
+
+
+        <div
+            class="person"
+            id="you"
+        >
+
+            <div class="person-label">
+                You
+            </div>
+
+        </div>
+
+
+        <div
+            class="person"
+            id="me"
+        >
+
+            <div class="person-label">
+                Me
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         QUESTION
+    ================================================= -->
+
+    <section class="question">
+
+        <div class="question-label">
+            A little question
+        </div>
+
+
+        <div
+            class="question-text"
+            id="questionText"
+        >
+            If you could teleport to me
+            right now, what would you do first?
+        </div>
+
+
+        <div
+            class="choices"
+            id="choices"
+        >
+
+            <button
+                class="choice"
+                onclick="choose(0)"
+            >
+                🤗 Hug me
+            </button>
+
+
+            <button
+                class="choice"
+                onclick="choose(1)"
+            >
+                😂 Annoy me
+            </button>
+
+
+            <button
+                class="choice"
+                onclick="choose(2)"
+            >
+                🍜 Eat together
+            </button>
+
+
+            <button
+                class="choice"
+                onclick="choose(3)"
+            >
+                🌙 Just stay beside me
+            </button>
+
+        </div>
+
+
+        <div
+            class="response"
+            id="response"
+        ></div>
+
+    </section>
+
+
+    <!-- =================================================
+         COMPLETION
+    ================================================= -->
+
+    <section
+        class="complete"
+        id="complete"
+    >
+
+        <div class="complete-box">
+
+            <div class="complete-star">
+                ✦
+            </div>
+
+
+            <div class="complete-small">
+                CONNECTION ESTABLISHED
+            </div>
+
+
+            <h2>
+                Closer.
+            </h2>
+
+
+            <p>
+                Different places.
+                <br>
+                Same little universe. 💜
+            </p>
+
+
+            <a
+    class="next"
+    href="distance-level4.html"
+>
+    CONTINUE →
+</a>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   STAR FIELD
+===================================================== */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+const starCount =
+    window.innerWidth < 600
+        ? 100
+        : 160;
+
+
+for (
+    let i = 0;
+    i < starCount;
+    i++
+) {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+
+    star.className =
+        "star";
+
+
+    const size =
+        Math.random() * 2 + .5;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    star.style.setProperty(
+        "--duration",
+        (3 + Math.random() * 5) + "s"
+    );
+
+
+    star.style.setProperty(
+        "--delay",
+        (-Math.random() * 5) + "s"
+    );
+
+
+    stars.appendChild(
+        star
+    );
+
+}
+
+
+/* =====================================================
+   GAME DATA
+===================================================== */
+
+const questions = [
+
+    {
+
+        text:
+            "If you could teleport to me right now, what would you do first?",
+
+        choices: [
+
+            "🤗 Hug me",
+
+            "😂 Annoy me",
+
+            "🍜 Eat together",
+
+            "🌙 Just stay beside me"
+
+        ],
+
+        responses: [
+
+            "Yeah... I'd hold you for a while. 💜",
+
+            "There she is. My little maldita. 😂💜",
+
+            "Honestly? Food first sounds perfect. 🍜",
+
+            "Sometimes you don't need to do anything. 🌙"
+
+        ]
+
+    },
+
+    {
+
+        text:
+            "Which little thing would you bring into our universe?",
+
+        choices: [
+
+            "🌷 A field of tulips",
+
+            "🧸 A giant plushie",
+
+            "💜 Everything purple",
+
+            "🍌 Bob"
+
+        ],
+
+        responses: [
+
+            "A whole sky full of tulips. 🌷",
+
+            "Of course you'd bring a plushie. 🧸",
+
+            "Purple everywhere. Obviously. 💜",
+
+            "BOB HAS ENTERED THE UNIVERSE. 🍌😂"
+
+        ]
+
+    },
+
+    {
+
+        text:
+            "If distance disappeared for one night...",
+
+        choices: [
+
+            "🌙 Stay up together",
+
+            "🎧 Listen to music",
+
+            "😂 Cause chaos",
+
+            "🥹 Just look at you"
+
+        ],
+
+        responses: [
+
+            "One night wouldn't feel long enough. 🌙",
+
+            "Our own little soundtrack. 🎧💜",
+
+            "I already know you'd cause trouble. 😂",
+
+            "Yeah... I'd probably do the same. 🥹"
+
+        ]
+
+    }
+
+];
+
+
+/* =====================================================
+   GAME STATE
+===================================================== */
+
+let questionIndex = 0;
+
+let connection = 0;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+
+const choices =
+    document.getElementById(
+        "choices"
+    );
+
+
+const response =
+    document.getElementById(
+        "response"
+    );
+
+
+const meterFill =
+    document.getElementById(
+        "meterFill"
+    );
+
+
+const you =
+    document.getElementById(
+        "you"
+    );
+
+
+const me =
+    document.getElementById(
+        "me"
+    );
+
+
+const line =
+    document.getElementById(
+        "connectionLine"
+    );
+
+
+const complete =
+    document.getElementById(
+        "complete"
+    );
+
+
+/* =====================================================
+   UPDATE POSITIONS
+===================================================== */
+
+function updateUniverse() {
+
+    /*
+       0% =
+       far apart
+
+       100% =
+       together
+    */
+
+    const left =
+        15 +
+        connection * .35;
+
+
+    const right =
+        85 -
+        connection * .35;
+
+
+    you.style.left =
+        left + "%";
+
+
+    me.style.left =
+        right + "%";
+
+
+    /*
+       The line grows as
+       the connection increases.
+    */
+
+    const distance =
+        right - left;
+
+
+    line.style.left =
+        left + "%";
+
+
+    line.style.width =
+        distance + "%";
+
+}
+
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion() {
+
+    const current =
+        questions[
+            questionIndex
+        ];
+
+
+    questionText.textContent =
+        current.text;
+
+
+    choices.innerHTML =
+        "";
+
+
+    current.choices.forEach(
+        function(text, index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "choice";
+
+
+            button.textContent =
+                text;
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    choose(index);
+
+                }
+            );
+
+
+            choices.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    response.textContent =
+        "";
+
+}
+
+
+/* =====================================================
+   CHOOSE ANSWER
+===================================================== */
+
+function choose(index) {
+
+    /*
+       Prevent multiple clicks
+       while processing.
+    */
+
+    const buttons =
+        choices.querySelectorAll(
+            ".choice"
+        );
+
+
+    buttons.forEach(
+        function(button) {
+
+            button.disabled =
+                true;
+
+            button.style.opacity =
+                ".5";
+
+        }
+    );
+
+
+    const current =
+        questions[
+            questionIndex
+        ];
+
+
+    response.textContent =
+        current.responses[index];
+
+
+    /*
+       Increase connection.
+    */
+
+    connection += 33.34;
+
+
+    if (
+        connection > 100
+    ) {
+
+        connection = 100;
+
+    }
+
+
+    meterFill.style.width =
+        connection + "%";
+
+
+    updateUniverse();
+
+
+    /*
+       Check completion.
+    */
+
+    if (
+        connection >= 100
+    ) {
+
+        setTimeout(
+            function() {
+
+                complete.classList.add(
+                    "show"
+                );
+
+            },
+            1200
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Move to next question.
+    */
+
+    questionIndex++;
+
+
+    setTimeout(
+        function() {
+
+            showQuestion();
+
+        },
+        1300
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateUniverse();
+
+showQuestion();
+
+</script>
+
+
+</body>
+
+</html>
