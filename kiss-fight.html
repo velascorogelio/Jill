@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Kiss Fight 💜</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:white;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(139,92,246,.2),
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(236,72,153,.12),
+            transparent 35%
+        ),
+
+        #050312;
+
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   GAME CONTAINER
+===================================================== */
+
+.game{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+/* =====================================================
+   SCREEN
+===================================================== */
+
+.screen{
+
+    width:min(
+        620px,
+        100%
+    );
+
+    padding:30px 22px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(30,20,55,.97),
+            rgba(12,8,28,.99)
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.25);
+
+    box-shadow:
+
+        0 0 40px
+        rgba(139,92,246,.18),
+
+        inset 0 0 40px
+        rgba(139,92,246,.04);
+
+    animation:
+        appear .5s ease;
+
+}
+
+
+@keyframes appear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.92)
+            translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   HIDDEN
+===================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+/* =====================================================
+   START SCREEN
+===================================================== */
+
+.icon{
+
+    font-size:60px;
+
+    margin-bottom:8px;
+
+    animation:
+        bounce 1.5s ease-in-out infinite;
+
+}
+
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+
+.small-title{
+
+    color:#c4b5fd;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    margin-bottom:5px;
+
+}
+
+
+h1{
+
+    color:#f5e9ff;
+
+    font-size:
+        clamp(
+            38px,
+            9vw,
+            58px
+        );
+
+    text-shadow:
+        0 0 25px
+        rgba(216,180,254,.5);
+
+}
+
+
+.subtitle{
+
+    margin-top:8px;
+
+    color:#d8b4fe;
+
+    font-size:17px;
+
+}
+
+
+/* =====================================================
+   RULES
+===================================================== */
+
+.rules{
+
+    margin:25px auto;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+        rgba(139,92,246,.07);
+
+    border:
+        1px solid
+        rgba(216,180,254,.14);
+
+}
+
+
+.rules h2{
+
+    color:#f5d0fe;
+
+    font-size:18px;
+
+    margin-bottom:14px;
+
+}
+
+
+.rules p{
+
+    margin:9px 0;
+
+    color:#cfc5dc;
+
+    font-size:14px;
+
+}
+
+
+.kiss-rule{
+
+    color:#f0abfc !important;
+
+    font-weight:800;
+
+}
+
+
+.no-kiss{
+
+    color:#aaa0b5 !important;
+
+    font-style:italic;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+.start-button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:16px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #9333ea,
+            #ec4899
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(236,72,153,.25);
+
+    transition:.2s;
+
+}
+
+
+.start-button:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 35px
+        rgba(236,72,153,.45);
+
+}
+
+
+.back-button{
+
+    margin-top:15px;
+
+    padding:8px 14px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#9f8faa;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   GAME TOP
+===================================================== */
+
+.round{
+
+    color:#a78bfa;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+}
+
+
+.message{
+
+    min-height:25px;
+
+    margin-top:8px;
+
+    color:#f0abfc;
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+
+/* =====================================================
+   FIGHTERS
+===================================================== */
+
+.fighters{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+
+.fighter{
+
+    padding:15px 8px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(216,180,254,.1);
+
+}
+
+
+.fighter-name{
+
+    color:#eee4f7;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+
+}
+
+
+.avatar{
+
+    font-size:52px;
+
+    margin:5px;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(216,180,254,.35)
+        );
+
+}
+
+
+.vs{
+
+    color:#f0abfc;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    text-shadow:
+        0 0 15px
+        rgba(236,72,153,.5);
+
+}
+
+
+/* =====================================================
+   HP
+===================================================== */
+
+.hp-container{
+
+    width:100%;
+
+    height:10px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:#241b31;
+
+    margin-top:10px;
+
+}
+
+
+.hp{
+
+    height:100%;
+
+    width:100%;
+
+    border-radius:20px;
+
+    transition:
+        width .35s ease;
+
+}
+
+
+.jillian-hp{
+
+    background:
+        linear-gradient(
+            90deg,
+            #a855f7,
+            #e879f9
+        );
+
+}
+
+
+.babyy-hp{
+
+    background:
+        linear-gradient(
+            90deg,
+            #ec4899,
+            #fb7185
+        );
+
+}
+
+
+.hp-text{
+
+    margin-top:6px;
+
+    color:#aaa0b5;
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+   COMBAT TEXT
+===================================================== */
+
+.combat{
+
+    min-height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:20px 0 10px;
+
+    color:#ddd2e8;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+.controls{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:8px;
+
+}
+
+
+.attack{
+
+    min-height:75px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.15);
+
+    border-radius:15px;
+
+    color:white;
+
+    cursor:pointer;
+
+    background:
+        rgba(255,255,255,.035);
+
+    transition:.15s;
+
+}
+
+
+.attack:hover{
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(139,92,246,.16);
+
+}
+
+
+.attack:active{
+
+    transform:
+        scale(.92);
+
+}
+
+
+.attack span{
+
+    display:block;
+
+    font-size:25px;
+
+}
+
+
+.attack small{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+}
+
+
+.hint{
+
+    margin-top:15px;
+
+    color:#776b82;
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+   HIT ANIMATION
+===================================================== */
+
+.hit{
+
+    animation:
+        hit .3s ease;
+
+}
+
+
+@keyframes hit{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-8px);
+    }
+
+    50%{
+        transform:translateX(8px);
+    }
+
+    75%{
+        transform:translateX(-5px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result-emoji{
+
+    font-size:75px;
+
+    animation:
+        resultBounce 1.2s
+        ease-in-out infinite;
+
+}
+
+
+@keyframes resultBounce{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.1);
+    }
+
+}
+
+
+.result-title{
+
+    margin-top:10px;
+
+    color:#f5d0fe;
+
+    font-size:38px;
+
+    font-weight:900;
+
+    text-shadow:
+        0 0 25px
+        rgba(236,72,153,.45);
+
+}
+
+
+.result-message{
+
+    margin:12px 0 20px;
+
+    color:#cfc5dc;
+
+    line-height:1.5;
+
+}
+
+
+.kisses{
+
+    margin:20px 0;
+
+    font-size:30px;
+
+    letter-spacing:4px;
+
+}
+
+
+.result-button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:15px;
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:500px){
+
+    .game{
+
+        padding:10px;
+
+    }
+
+
+    .screen{
+
+        padding:
+            25px 15px;
+
+        border-radius:22px;
+
+    }
+
+
+    .fighters{
+
+        gap:5px;
+
+    }
+
+
+    .avatar{
+
+        font-size:42px;
+
+    }
+
+
+    .vs{
+
+        font-size:16px;
+
+    }
+
+
+    .controls{
+
+        gap:5px;
+
+    }
+
+
+    .attack{
+
+        min-height:65px;
+
+        border-radius:12px;
+
+    }
+
+
+    .attack span{
+
+        font-size:22px;
+
+    }
+
+
+    .attack small{
+
+        font-size:8px;
+
+    }
+
+}
+  
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="game">
+
+
+<!-- =====================================================
+     START SCREEN
+===================================================== -->
+
+<section
+    id="startScreen"
+    class="screen"
+>
+
+    <div class="icon">
+        🥊
+    </div>
+
+    <div class="small-title">
+        SUNTUKAN TAYO RIGHT NEOW
+    </div>
+
+    <h1>
+        KISS FIGHT
+    </h1>
+
+    <p class="subtitle">
+        🥹 YOUR BABYY vs YOU 😡
+    </p>
+
+
+    <div class="rules">
+
+        <h2>
+            📖 HOW TO PLAY
+        </h2>
+
+        <p>
+            👊 Danog — quick attack
+        </p>
+
+        <p>
+            🦵 Kugtar — stronger attack
+        </p>
+
+        <p>
+            🛡️ Shield — reduce damage
+        </p>
+
+        <p>
+            💥 Special — powerful attack
+        </p>
+
+        <p>
+            First one to reach
+            <strong>0 HP</strong>
+            loses.
+        </p>
+
+        <p class="kiss-rule">
+            🏆 Winner gets the kisses. 💋
+        </p>
+
+        <p class="no-kiss">
+            😭 Loser gets NO kisses.
+        </p>
+
+    </div>
+
+
+    <button
+        class="start-button"
+        onclick="startFight()"
+    >
+        LET'S FIGHT 🥊
+    </button>
+
+
+    <button
+        class="back-button"
+        onclick="goBack()"
+    >
+        ← Back to universe
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     GAME SCREEN
+===================================================== -->
+
+<section
+    id="gameScreen"
+    class="screen hidden"
+>
+
+    <div class="round">
+        ROUND 1
+    </div>
+
+    <div
+        id="message"
+        class="message"
+    >
+        FIGHT! 🥊
+    </div>
+
+
+    <div class="fighters">
+
+
+        <!-- JILLIAN -->
+
+        <div
+            id="YourBABYYFighter"
+            class="fighter"
+        >
+
+            <div class="fighter-name">
+                Your BABYY
+            </div>
+
+            <div class="avatar">
+                🥹
+            </div>
+
+            <div class="hp-container">
+
+                <div
+                    id="YourBABYYBar"
+                    class="hp YourBABYY-hp"
+                ></div>
+
+            </div>
+
+            <div class="hp-text">
+
+                <span id="YourBABYYHP">
+                    100
+                </span>
+
+                HP
+
+            </div>
+
+        </div>
+
+
+        <div class="vs">
+            VS
+        </div>
+
+
+        <!-- YOU -->
+
+        <div
+            id="YouFighter"
+            class="fighter"
+        >
+
+            <div class="fighter-name">
+                YOU
+            </div>
+
+            <div class="avatar">
+                😡
+            </div>
+
+            <div class="hp-container">
+
+                <div
+                    id="YOUBar"
+                    class="hp YOU-hp"
+                ></div>
+
+            </div>
+
+            <div class="hp-text">
+
+                <span id="YOUHP">
+                    100
+                </span>
+
+                HP
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="combat"
+        class="combat"
+    >
+        Choose your move! 💜
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="attack"
+            onclick="playerAttack('punch')"
+        >
+            <span>👊</span>
+            <small>PUNCH</small>
+        </button>
+
+
+        <button
+            class="attack"
+            onclick="playerAttack('kick')"
+        >
+            <span>🦵</span>
+            <small>KICK</small>
+        </button>
+
+
+        <button
+            class="attack"
+            onclick="playerBlock()"
+        >
+            <span>🛡️</span>
+            <small>BLOCK</small>
+        </button>
+
+
+        <button
+            class="attack"
+            onclick="playerAttack('special')"
+        >
+            <span>💥</span>
+            <small>SPECIAL</small>
+        </button>
+
+    </div>
+
+
+    <div class="hint">
+        Choose your move carefully... 👀
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESULT SCREEN
+===================================================== -->
+
+<section
+    id="resultScreen"
+    class="screen hidden"
+>
+
+    <div
+        id="resultEmoji"
+        class="result-emoji"
+    >
+        🏆
+    </div>
+
+
+    <div
+        id="resultTitle"
+        class="result-title"
+    >
+        YOU WIN!
+    </div>
+
+
+    <div
+        id="resultMessage"
+        class="result-message"
+    >
+        Your BABYY owes you kisses!
+    </div>
+
+
+    <div
+        id="kisses"
+        class="kisses"
+    >
+        💋 💋 💋 💋 💋
+    </div>
+
+
+    <button
+        class="result-button"
+        onclick="startFight()"
+    >
+        🥊 FIGHT AGAIN
+    </button>
+
+
+    <button
+        class="back-button"
+        onclick="goBack()"
+    >
+        Back to the universe 💜
+    </button>
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let YourBABYYHP = 100;
+let YOUHP = 100;
+
+let gameRunning = false;
+let attackLocked = false;
+let blocking = false;
+
+
+/* =====================================================
+   START FIGHT
+===================================================== */
+
+function startFight(){
+
+    YourBABYYHP = 100;
+    YOUHP = 100;
+
+    gameRunning = true;
+    attackLocked = false;
+    blocking = false;
+
+    document
+        .getElementById("startScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("resultScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("gameScreen")
+        .classList.remove("hidden");
+
+    updateUI();
+
+    setMessage("FIGHT! 🥊");
+
+    showCombat("Choose your move! 💜");
+}
+
+
+/* =====================================================
+   PLAYER ATTACK
+   YOU attacks Your BABYY
+===================================================== */
+
+function playerAttack(type){
+
+    if(
+        !gameRunning ||
+        attackLocked
+    ){
+        return;
+    }
+
+    attackLocked = true;
+    blocking = false;
+
+    let damage = 0;
+    let name = "";
+
+
+    /* PUNCH */
+
+    if(type === "punch"){
+
+        damage = random(10,20);
+
+        name = "👊 PUNCH!";
+    }
+
+
+    /* KICK */
+
+    else if(type === "kick"){
+
+        damage = random(15,30);
+
+        name = "🦵 KICK!";
+    }
+
+
+    /* SPECIAL */
+
+    else if(type === "special"){
+
+        damage = random(20,40);
+
+        name = "💥 SPECIAL!";
+    }
+
+
+    /* DAMAGE YOUR BABYY */
+
+    YourBABYYHP -= damage;
+
+    if(YourBABYYHP < 0){
+
+        YourBABYYHP = 0;
+
+    }
+
+
+    showCombat(
+        name +
+        " You dealt " +
+        damage +
+        " damage to Your BABYY! 💜"
+    );
+
+    setMessage("HIT! 💥");
+
+
+    /* SHAKE LEFT FIGHTER */
+
+    hit("YourBABYYFighter");
+
+
+    updateUI();
+
+
+    /* YOUR BABYY DEFEATED */
+
+    if(YourBABYYHP <= 0){
+
+        setTimeout(
+            function(){
+
+                finishFight("YOU");
+
+            },
+            700
+        );
+
+        return;
+    }
+
+
+    /* YOUR BABYY ATTACKS BACK */
+
+    setTimeout(
+        YourBABYYAttack,
+        700
+    );
+}
+
+
+/* =====================================================
+   BLOCK
+===================================================== */
+
+function playerBlock(){
+
+    if(
+        !gameRunning ||
+        attackLocked
+    ){
+        return;
+    }
+
+    attackLocked = true;
+    blocking = true;
+
+
+    showCombat(
+        "🛡️ You blocked! Damage will be reduced."
+    );
+
+    setMessage("BLOCK! 🛡️");
+
+
+    setTimeout(
+        YourBABYYAttack,
+        700
+    );
+}
+
+
+/* =====================================================
+   YOUR BABYY AI
+   Your BABYY attacks YOU
+===================================================== */
+
+function YourBABYYAttack(){
+
+    if(!gameRunning){
+
+        return;
+
+    }
+
+
+    const attacks = [
+        "punch",
+        "kick",
+        "special"
+    ];
+
+
+    const type =
+        attacks[
+            Math.floor(
+                Math.random() *
+                attacks.length
+            )
+        ];
+
+
+    let damage = 0;
+    let name = "";
+
+
+    /* PUNCH */
+
+    if(type === "punch"){
+
+        damage = random(8,18);
+
+        name =
+            "👊 Your BABYY punched you!";
+    }
+
+
+    /* KICK */
+
+    else if(type === "kick"){
+
+        damage = random(12,25);
+
+        name =
+            "🦵 Your BABYY kicked you!";
+    }
+
+
+    /* SPECIAL */
+
+    else{
+
+        damage = random(15,30);
+
+        name =
+            "💥 Your BABYY used SPECIAL!";
+    }
+
+
+    /* BLOCK REDUCES DAMAGE */
+
+    if(blocking){
+
+        damage =
+            Math.floor(
+                damage * 0.3
+            );
+
+        name =
+            "🛡️ BLOCKED! " +
+            name;
+    }
+
+
+    /* DAMAGE YOU */
+
+    YOUHP -= damage;
+
+    if(YOUHP < 0){
+
+        YOUHP = 0;
+
+    }
+
+
+    showCombat(
+        name +
+        " -" +
+        damage +
+        " HP 😭"
+    );
+
+
+    setMessage(
+        blocking
+            ? "BLOCKED! 🛡️"
+            : "ARAYYYY KO! 💥"
+    );
+
+
+    /* SHAKE RIGHT FIGHTER */
+
+    hit("YouFighter");
+
+
+    updateUI();
+
+
+    blocking = false;
+
+
+    /* YOU DEFEATED */
+
+    if(YOUHP <= 0){
+
+        setTimeout(
+            function(){
+
+                finishFight("Your BABYY");
+
+            },
+            700
+        );
+
+        return;
+    }
+
+
+    attackLocked = false;
+}
+
+
+/* =====================================================
+   RANDOM NUMBER
+===================================================== */
+
+function random(min,max){
+
+    return Math.floor(
+        Math.random() *
+        (max - min + 1)
+    ) + min;
+
+}
+
+
+/* =====================================================
+   UPDATE UI
+===================================================== */
+
+function updateUI(){
+
+    /* LEFT — YOUR BABYY */
+
+    document
+        .getElementById("YourBABYYBar")
+        .style.width =
+            YourBABYYHP + "%";
+
+
+    document
+        .getElementById("YOUBar")
+        .style.width =
+            YOUHP + "%";
+
+
+    document
+        .getElementById("YourBABYYHP")
+        .textContent =
+            YourBABYYHP;
+
+
+    document
+        .getElementById("YOUHP")
+        .textContent =
+            YOUHP;
+}
+
+
+/* =====================================================
+   COMBAT TEXT
+===================================================== */
+
+function showCombat(text){
+
+    document
+        .getElementById("combat")
+        .textContent =
+            text;
+
+}
+
+
+/* =====================================================
+   TOP MESSAGE
+===================================================== */
+
+function setMessage(text){
+
+    document
+        .getElementById("message")
+        .textContent =
+            text;
+
+}
+
+
+/* =====================================================
+   HIT ANIMATION
+===================================================== */
+
+function hit(id){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    element.classList.remove("hit");
+
+
+    void element.offsetWidth;
+
+
+    element.classList.add("hit");
+
+
+    setTimeout(
+        function(){
+
+            element.classList.remove("hit");
+
+        },
+        350
+    );
+}
+
+
+/* =====================================================
+   FINISH FIGHT
+===================================================== */
+
+function finishFight(winner){
+
+    gameRunning = false;
+    attackLocked = true;
+
+
+    document
+        .getElementById("gameScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("resultScreen")
+        .classList.remove("hidden");
+
+
+    const emoji =
+        document.getElementById("resultEmoji");
+
+    const title =
+        document.getElementById("resultTitle");
+
+    const message =
+        document.getElementById("resultMessage");
+
+    const kisses =
+        document.getElementById("kisses");
+
+
+    /* YOU WIN */
+
+    if(winner === "YOU"){
+
+        emoji.textContent =
+            "🏆💋";
+
+        title.textContent =
+            "YOU WIN! 🏆";
+
+        message.innerHTML =
+            "Your BABYY owes you a bunch of kisses! 😭💜";
+
+        kisses.textContent =
+            "💋 💋 💋 💋 💋 💋 💋";
+
+    }
+
+
+    /* YOUR BABYY WINS */
+
+    else{
+
+        emoji.textContent =
+            "😭💔";
+
+        title.textContent =
+            "YOU LOST! 😭";
+
+        message.innerHTML =
+            "Nyenye walang kiss! 🤪😝";
+
+        kisses.textContent =
+            "🚫 💋 🚫 💋 🚫";
+
+    }
+
+}
+
+
+/* =====================================================
+   BACK TO UNIVERSE
+===================================================== */
+
+function goBack(){
+
+    window.location.href =
+        "universe.html";
+}
+
+</script>
+
+
+
+        
+
+
+</script>
+
+</body>
+</html>

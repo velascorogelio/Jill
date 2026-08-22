@@ -4062,6 +4062,10 @@ body{
 
     }
 
+  .kiss-fight{
+    bottom:10%;
+}
+
 }
 
 
@@ -4167,6 +4171,42 @@ body{
     transform: scale(.9);
 }
 
+
+
+/* =====================================================
+   KISS FIGHT DESTINATION
+===================================================== */
+
+.kiss-fight{
+    bottom:8%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    --float:5.5s;
+}
+
+/* Keep the floating animation centered */
+@keyframes kissFightFloat{
+
+    0%,100%{
+        transform:translateX(-50%) translateY(-6px);
+    }
+
+    50%{
+        transform:translateX(-50%) translateY(6px);
+    }
+
+}
+
+.kiss-fight{
+    animation:
+        kissFightFloat
+        var(--float)
+        ease-in-out
+        infinite;
+}
+  
   
   
 
@@ -4329,7 +4369,18 @@ body{
         Distance
       </div>
 
-    </button>
+   <button
+    class="destination kiss-fight"
+    onclick="window.location.href='kiss-fight.html'"
+>
+    <div class="destination-icon">
+        🥊
+    </div>
+
+    <div class="destination-name">
+        KISS FIGHT
+    </div>
+</button>
 
         <!-- LETTERS PLACEHOLDER -->
 
@@ -4549,7 +4600,7 @@ body{
     <div class="gallery-heading">
 
         <h2>
-            Her World
+            Your World
         </h2>
 
         <p>
@@ -6639,7 +6690,6 @@ function closePhoto(event) {
     >
 
 </div>
-
 
   
 </body>

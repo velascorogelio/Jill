@@ -1,0 +1,5508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050312">
+
+<title>Dreamworld 💜</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    color:#fff;
+    background:#050312;
+    overflow:hidden;
+}
+
+button{
+    font:inherit;
+}
+
+button:focus-visible{
+    outline:2px solid #d8b4fe;
+    outline-offset:3px;
+}
+
+
+/* =========================================================
+   MAIN WORLD
+========================================================= */
+
+.dreamworld{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(139,92,246,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(236,72,153,.12),
+            transparent 35%
+        ),
+        #050312;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#fff;
+    opacity:.6;
+    animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.2;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.game-hud{
+    position:fixed;
+    top:18px;
+    left:18px;
+    right:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    z-index:1000;
+    pointer-events:none;
+}
+
+.player-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:9px 14px;
+
+    border-radius:18px;
+
+    background:rgba(15,10,30,.78);
+
+    border:1px solid rgba(216,180,254,.2);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,.25);
+}
+
+.player-avatar{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+    box-shadow:
+        0 0 18px rgba(236,72,153,.35);
+}
+
+.player-name{
+    color:#f5e9ff;
+    font-size:13px;
+    font-weight:800;
+}
+
+.player-level{
+    margin-top:2px;
+    color:#a78bfa;
+    font-size:9px;
+    letter-spacing:1.5px;
+}
+
+.xp-container{
+    width:100px;
+    height:5px;
+
+    margin-top:4px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.1);
+}
+
+.xp-bar{
+    width:0%;
+    height:100%;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #f0abfc
+        );
+
+    transition:width .4s ease;
+}
+
+.xp-text{
+    margin-top:2px;
+    color:#776b82;
+    font-size:8px;
+}
+
+.currency{
+    display:flex;
+    gap:8px;
+}
+
+.currency-item{
+    min-width:65px;
+
+    padding:9px 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+
+    border-radius:16px;
+
+    background:rgba(15,10,30,.78);
+
+    border:1px solid rgba(216,180,254,.2);
+
+    backdrop-filter:blur(12px);
+
+    color:#f5d0fe;
+    font-size:13px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title{
+    position:absolute;
+
+    top:35px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    text-align:center;
+
+    z-index:5;
+}
+
+.title-small{
+    color:#a78bfa;
+    font-size:10px;
+    letter-spacing:4px;
+    margin-bottom:5px;
+}
+
+.title h1{
+    font-size:clamp(32px,8vw,55px);
+    color:#f5e9ff;
+
+    text-shadow:
+        0 0 20px rgba(216,180,254,.5);
+}
+
+.title p{
+    margin-top:6px;
+    color:#9f8faa;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:min(90vw,420px);
+
+    text-align:center;
+}
+
+
+/* =========================================================
+   HOUSE
+========================================================= */
+
+.house{
+    position:relative;
+
+    width:210px;
+    height:170px;
+
+    margin:0 auto 25px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.house:hover{
+    transform:
+        translateY(-8px)
+        scale(1.03);
+}
+
+.roof{
+    position:absolute;
+
+    top:0;
+    left:20px;
+
+    width:170px;
+    height:100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #4c1d95
+        );
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 100%,
+            0 100%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(139,92,246,.4)
+        );
+}
+
+.house-body{
+    position:absolute;
+
+    left:40px;
+    bottom:0;
+
+    width:130px;
+    height:105px;
+
+    border-radius:8px 8px 4px 4px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24163f,
+            #12091f
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+}
+
+.door{
+    position:absolute;
+
+    bottom:0;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:42px;
+    height:65px;
+
+    border-radius:8px 8px 0 0;
+
+    background:#090414;
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+}
+
+.door::after{
+    content:"";
+
+    position:absolute;
+
+    right:7px;
+    top:33px;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#d8b4fe;
+
+    box-shadow:
+        0 0 8px #d8b4fe;
+}
+
+.window{
+    position:absolute;
+
+    top:25px;
+
+    width:28px;
+    height:28px;
+
+    border-radius:7px;
+
+    background:
+        radial-gradient(
+            circle,
+            #f0abfc,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(240,171,252,.5);
+}
+
+.window.left{
+    left:12px;
+}
+
+.window.right{
+    right:12px;
+}
+
+.home-label{
+    color:#d8b4fe;
+
+    font-size:14px;
+    font-weight:800;
+
+    letter-spacing:2px;
+}
+
+.home-hint{
+    margin-top:6px;
+
+    color:#776b82;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   HOME MENU
+========================================================= */
+
+.menu{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:30px;
+}
+
+.menu-button{
+    padding:15px 8px;
+
+    border-radius:16px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.12);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.menu-button:hover{
+    transform:translateY(-4px);
+
+    background:
+        rgba(139,92,246,.12);
+
+    border-color:
+        rgba(216,180,254,.25);
+}
+
+.menu-icon{
+    display:block;
+    font-size:25px;
+    margin-bottom:5px;
+}
+
+.menu-text{
+    font-size:10px;
+    letter-spacing:1px;
+    color:#cfc5dc;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message{
+    position:absolute;
+
+    bottom:25px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(90%,500px);
+
+    text-align:center;
+
+    color:#776b82;
+    font-size:11px;
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.notification{
+    position:fixed;
+
+    left:50%;
+    top:90px;
+
+    transform:
+        translate(-50%,-20px);
+
+    z-index:6000;
+
+    width:min(350px,calc(100% - 30px));
+
+    padding:14px 18px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(60,30,100,.96),
+            rgba(25,10,45,.98)
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.3);
+
+    color:#f5e9ff;
+
+    font-size:13px;
+    font-weight:700;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s ease;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.4);
+}
+
+.notification.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   DAILY DREAM
+========================================================= */
+
+.daily-dream-button{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    z-index:1000;
+
+    width:min(360px,calc(100% - 30px));
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px 16px;
+
+    border-radius:20px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(50,25,85,.92),
+            rgba(25,12,45,.96)
+        );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.35),
+        0 0 25px rgba(139,92,246,.12);
+
+    transition:.25s ease;
+}
+
+.daily-dream-button:hover{
+    transform:
+        translateX(-50%)
+        translateY(-4px);
+
+    border-color:
+        rgba(216,180,254,.5);
+}
+
+.daily-icon{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+        rgba(139,92,246,.15);
+
+    font-size:23px;
+}
+
+.daily-text{
+    flex:1;
+    text-align:left;
+}
+
+.daily-text strong{
+    display:block;
+
+    color:#f5d0fe;
+
+    font-size:12px;
+    letter-spacing:1.5px;
+}
+
+.daily-text small{
+    display:block;
+
+    margin-top:3px;
+
+    color:#a99bb5;
+    font-size:10px;
+}
+
+.daily-arrow{
+    color:#c4b5fd;
+    font-size:20px;
+}
+
+
+/* =========================================================
+   GENERIC SCREEN
+========================================================= */
+
+.screen{
+    position:fixed;
+    inset:0;
+
+    z-index:3000;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding:85px 20px 30px;
+
+    overflow-y:auto;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(139,92,246,.22),
+            transparent 35%
+        ),
+        #050312;
+}
+
+.screen.hidden{
+    display:none;
+}
+
+.screen-header{
+    width:min(800px,100%);
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.screen-label{
+    color:#a78bfa;
+
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.screen-header h2{
+    margin-top:7px;
+
+    color:#f5d0fe;
+
+    font-size:34px;
+
+    text-shadow:
+        0 0 20px
+        rgba(216,180,254,.35);
+}
+
+.screen-header p{
+    margin-top:7px;
+
+    color:#9f8faa;
+
+    font-size:12px;
+}
+
+.back-button{
+    margin-top:22px;
+
+    padding:11px 20px;
+
+    border:1px solid
+        rgba(216,180,254,.15);
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:#9f8faa;
+
+    cursor:pointer;
+}
+
+.back-button:hover{
+    color:#d8b4fe;
+
+    background:
+        rgba(139,92,246,.1);
+}
+
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+
+.location-grid{
+    width:min(760px,100%);
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+}
+
+.location-card{
+    position:relative;
+
+    min-height:200px;
+
+    padding:20px 14px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.18);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,20,60,.95),
+            rgba(15,8,30,.98)
+        );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.location-card:hover{
+    transform:translateY(-6px);
+
+    border-color:
+        rgba(216,180,254,.4);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.35),
+
+        0 0 25px
+        rgba(139,92,246,.15);
+}
+
+.location-card.locked{
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    filter:grayscale(.35);
+}
+
+.location-card.locked:hover{
+    transform:none;
+
+    border-color:
+        rgba(216,180,254,.18);
+
+    box-shadow:none;
+}
+
+.location-icon{
+    font-size:48px;
+
+    margin-bottom:10px;
+}
+
+.location-name{
+    color:#f5d0fe;
+
+    font-size:15px;
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+.location-description{
+    margin-top:7px;
+
+    color:#a99bb5;
+
+    font-size:10px;
+
+    line-height:1.5;
+}
+
+.location-status{
+    margin-top:12px;
+
+    padding:5px 9px;
+
+    border-radius:10px;
+
+    background:
+        rgba(139,92,246,.12);
+
+    color:#c4b5fd;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   GARDEN
+========================================================= */
+
+.garden-area{
+    position:relative;
+
+    width:min(760px,100%);
+    height:380px;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(134,239,172,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #100b24,
+            #080516
+        );
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.35),
+
+        inset 0 0 50px
+        rgba(139,92,246,.08);
+}
+
+.garden-star{
+    position:absolute;
+
+    color:#f5d0fe;
+
+    font-size:12px;
+
+    animation:
+        gardenTwinkle 2.5s
+        ease-in-out infinite;
+}
+
+@keyframes gardenTwinkle{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.8);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.2);
+    }
+}
+
+.garden-ground{
+    position:absolute;
+
+    left:-10%;
+    right:-10%;
+    bottom:-90px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(76,29,149,.5),
+            rgba(15,8,30,.9) 65%
+        );
+}
+
+.garden-flower,
+.garden-object{
+    position:absolute;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    z-index:4;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(240,171,252,.25)
+        );
+}
+
+.garden-flower:hover,
+.garden-object:hover{
+    transform:
+        scale(1.25)
+        translateY(-5px);
+}
+
+.heart-tree{
+    position:absolute;
+
+    left:50%;
+    bottom:55px;
+
+    transform:translateX(-50%);
+
+    font-size:90px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    z-index:3;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(236,72,153,.3)
+        );
+}
+
+.heart-tree:hover{
+    transform:
+        translateX(-50%)
+        scale(1.08);
+}
+
+.garden-butterfly{
+    position:absolute;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    z-index:5;
+
+    animation:
+        butterflyFloat 4s
+        ease-in-out infinite;
+}
+
+@keyframes butterflyFloat{
+    0%,100%{
+        transform:translate(0,0);
+    }
+
+    50%{
+        transform:translate(25px,-18px);
+    }
+}
+
+.garden-controls{
+    width:min(760px,100%);
+    margin-top:15px;
+}
+
+.discovery-panel{
+    width:100%;
+
+    margin-bottom:14px;
+
+    padding:16px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(216,180,254,.15);
+}
+
+.discovery-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:12px;
+}
+
+.discovery-title{
+    color:#f5d0fe;
+
+    font-size:12px;
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+.discovery-count{
+    color:#a78bfa;
+
+    font-size:10px;
+}
+
+.discovery-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:7px;
+}
+
+.discovery-item{
+    aspect-ratio:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(216,180,254,.1);
+
+    font-size:20px;
+
+    transition:.2s;
+}
+
+.discovery-item.found{
+    background:
+        rgba(139,92,246,.13);
+
+    border-color:
+        rgba(216,180,254,.25);
+
+    box-shadow:
+        0 0 12px
+        rgba(139,92,246,.12);
+}
+
+.discovery-item.secret{
+    color:#776b82;
+}
+
+.discovery-item.secret.unlocked{
+    color:#f5d0fe;
+}
+
+.search-garden{
+    width:100%;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+    color:#fff;
+
+    font-size:13px;
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 25px
+        rgba(236,72,153,.2);
+
+    transition:.2s;
+}
+
+.search-garden:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 35px
+        rgba(236,72,153,.35);
+}
+
+.search-garden:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.garden-result{
+    min-height:48px;
+
+    margin-top:12px;
+
+    padding:12px 15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(216,180,254,.12);
+
+    color:#d8b4fe;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   MOON LAKE
+========================================================= */
+
+.lake-area{
+    position:relative;
+
+    width:min(760px,100%);
+    height:400px;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    border:
+        1px solid
+        rgba(129,140,248,.25);
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(129,140,248,.2),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #090a24,
+            #050312
+        );
+
+    box-shadow:
+        inset 0 0 60px
+        rgba(99,102,241,.12);
+}
+
+.lake-moon{
+    position:absolute;
+
+    top:35px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff,
+            #ddd6fe 55%,
+            #a78bfa
+        );
+
+    box-shadow:
+        0 0 40px
+        rgba(196,181,253,.7);
+}
+
+.lake-water{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:48%;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(129,140,248,.08) 0px,
+            rgba(129,140,248,.08) 2px,
+            transparent 2px,
+            transparent 12px
+        ),
+        linear-gradient(
+            180deg,
+            rgba(30,27,75,.85),
+            rgba(5,3,18,1)
+        );
+
+    border-top:
+        1px solid
+        rgba(165,180,252,.2);
+}
+
+.falling-star{
+    position:absolute;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    animation:
+        fallingStar 2.8s linear infinite;
+}
+
+@keyframes fallingStar{
+    0%{
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(230px)
+            rotate(180deg);
+
+        opacity:0;
+    }
+}
+
+.lake-action{
+    width:min(760px,100%);
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+.action-button{
+    padding:15px;
+
+    border-radius:16px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.16);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#f5e9ff;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.action-button:hover{
+    background:
+        rgba(139,92,246,.12);
+
+    transform:translateY(-3px);
+}
+
+
+/* =========================================================
+   CASTLE
+========================================================= */
+
+.castle-area{
+    position:relative;
+
+    width:min(760px,100%);
+    min-height:400px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(236,72,153,.15),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #13091f,
+            #050312
+        );
+
+    box-shadow:
+        inset 0 0 60px
+        rgba(139,92,246,.1);
+}
+
+.castle{
+    position:relative;
+
+    width:300px;
+    height:300px;
+}
+
+.castle-tower{
+    position:absolute;
+
+    bottom:30px;
+
+    width:70px;
+    height:190px;
+
+    border-radius:8px 8px 0 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #211238,
+            #3b1d5c,
+            #180c29
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+}
+
+.castle-tower.left{
+    left:15px;
+}
+
+.castle-tower.right{
+    right:15px;
+}
+
+.castle-main{
+    position:absolute;
+
+    left:65px;
+    right:65px;
+    bottom:30px;
+
+    height:150px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2b1646,
+            #11081e
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.2);
+
+    border-radius:8px 8px 0 0;
+}
+
+.castle-roof{
+    position:absolute;
+
+    width:0;
+    height:0;
+
+    border-left:38px solid transparent;
+    border-right:38px solid transparent;
+    border-bottom:70px solid #8b5cf6;
+}
+
+.castle-roof.left{
+    left:12px;
+    bottom:220px;
+}
+
+.castle-roof.right{
+    right:12px;
+    bottom:220px;
+}
+
+.castle-roof.center{
+    left:50%;
+    transform:translateX(-50%);
+
+    bottom:175px;
+
+    border-left-width:50px;
+    border-right-width:50px;
+    border-bottom-width:85px;
+}
+
+.castle-door{
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    width:45px;
+    height:70px;
+
+    border-radius:22px 22px 0 0;
+
+    background:#080411;
+
+    border:
+        1px solid
+        rgba(216,180,254,.25);
+}
+
+.castle-window{
+    position:absolute;
+
+    width:22px;
+    height:30px;
+
+    border-radius:50% 50% 40% 40%;
+
+    background:
+        radial-gradient(
+            circle,
+            #f0abfc,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(240,171,252,.4);
+}
+
+.castle-window.w1{
+    left:25px;
+    top:35px;
+}
+
+.castle-window.w2{
+    right:25px;
+    top:35px;
+}
+
+.castle-window.w3{
+    left:50%;
+    transform:translateX(-50%);
+    top:40px;
+}
+
+
+/* =========================================================
+   SIMPLE PANELS
+========================================================= */
+
+.panel-card{
+    width:min(500px,100%);
+
+    padding:28px 22px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211238,
+            #0d071c
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.25);
+
+    box-shadow:
+        0 0 60px
+        rgba(139,92,246,.2);
+}
+
+.panel-icon{
+    font-size:60px;
+}
+
+.panel-card h2{
+    margin-top:8px;
+
+    color:#f5d0fe;
+
+    font-size:28px;
+}
+
+.panel-card p{
+    margin:12px auto 20px;
+
+    max-width:360px;
+
+    color:#cfc5dc;
+
+    line-height:1.6;
+
+    font-size:13px;
+}
+
+.stat-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.stat-box{
+    padding:15px;
+
+    border-radius:16px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(216,180,254,.12);
+}
+
+.stat-box strong{
+    display:block;
+
+    color:#f5d0fe;
+
+    font-size:20px;
+}
+
+.stat-box span{
+    display:block;
+
+    margin-top:4px;
+
+    color:#81758c;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   DAILY MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(5,3,18,.78);
+
+    backdrop-filter:blur(8px);
+}
+
+.modal.hidden{
+    display:none;
+}
+
+.modal-card{
+    width:min(440px,100%);
+
+    padding:32px 24px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211238,
+            #0d071c
+        );
+
+    border:
+        1px solid
+        rgba(216,180,254,.25);
+
+    box-shadow:
+        0 0 60px
+        rgba(139,92,246,.25);
+
+    animation:modalAppear .3s ease;
+}
+
+@keyframes modalAppear{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.modal-icon{
+    font-size:60px;
+}
+
+.modal-label{
+    margin-top:5px;
+
+    color:#a78bfa;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+}
+
+.modal-card h2{
+    margin-top:8px;
+
+    color:#f5d0fe;
+
+    font-size:28px;
+}
+
+.modal-card p{
+    margin:12px auto 20px;
+
+    max-width:330px;
+
+    color:#cfc5dc;
+
+    line-height:1.6;
+
+    font-size:13px;
+}
+
+.reward{
+    display:inline-block;
+
+    margin-bottom:20px;
+
+    padding:9px 18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(139,92,246,.12);
+
+    color:#f0abfc;
+
+    font-weight:800;
+}
+
+.primary-button{
+    display:block;
+
+    width:100%;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #ec4899
+        );
+
+    color:#fff;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.primary-button:disabled{
+    opacity:.5;
+
+    cursor:not-allowed;
+}
+
+.secondary-button{
+    margin-top:12px;
+
+    padding:8px 15px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#81758c;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   LEVEL UP
+========================================================= */
+
+.level-up{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5500;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+.level-up.show{
+    animation:
+        levelUpFlash 1.8s ease;
+}
+
+.level-up-card{
+    padding:25px 40px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2d1450,
+            #12071f
+        );
+
+    border:
+        1px solid
+        rgba(240,171,252,.5);
+
+    box-shadow:
+        0 0 60px
+        rgba(236,72,153,.4);
+}
+
+.level-up-card .emoji{
+    font-size:50px;
+}
+
+.level-up-card h2{
+    margin-top:8px;
+
+    color:#f5d0fe;
+
+    font-size:28px;
+}
+
+.level-up-card p{
+    margin-top:5px;
+
+    color:#bdaec8;
+
+    font-size:13px;
+}
+
+@keyframes levelUpFlash{
+    0%{
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    70%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+    .game-hud{
+        top:10px;
+        left:10px;
+        right:10px;
+    }
+
+    .player-info{
+        padding:7px 9px;
+    }
+
+    .player-avatar{
+        width:32px;
+        height:32px;
+        font-size:15px;
+    }
+
+    .player-name{
+        font-size:11px;
+    }
+
+    .xp-container{
+        width:75px;
+    }
+
+    .currency{
+        gap:5px;
+    }
+
+    .currency-item{
+        min-width:52px;
+        padding:8px;
+        font-size:11px;
+    }
+
+    .title{
+        top:70px;
+    }
+
+    .home{
+        top:52%;
+    }
+
+    .house{
+        transform:scale(.85);
+        margin-bottom:10px;
+    }
+
+    .menu{
+        margin-top:15px;
+    }
+
+    .location-grid{
+        grid-template-columns:1fr;
+        width:min(380px,100%);
+    }
+
+    .location-card{
+        min-height:155px;
+    }
+
+    .garden-area,
+    .lake-area,
+    .castle-area{
+        height:320px;
+    }
+
+    .heart-tree{
+        font-size:70px;
+        bottom:45px;
+    }
+
+    .garden-flower,
+    .garden-object{
+        font-size:25px;
+    }
+
+    .discovery-grid{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .lake-action{
+        grid-template-columns:1fr;
+    }
+
+    .daily-dream-button{
+        bottom:15px;
+    }
+
+    .message{
+        bottom:90px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     HUD
+========================================================= -->
+
+<div class="game-hud">
+
+    <div class="player-info">
+
+        <div class="player-avatar">
+            💜
+        </div>
+
+        <div>
+
+            <div class="player-name">
+                Jillian
+            </div>
+
+            <div class="player-level">
+                LEVEL
+                <span id="playerLevel">1</span>
+            </div>
+
+            <div class="xp-container">
+                <div
+                    id="xpBar"
+                    class="xp-bar"
+                ></div>
+            </div>
+
+            <div
+                id="xpText"
+                class="xp-text"
+            >
+                0 / 100 XP
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="currency">
+
+        <div class="currency-item">
+            💜
+            <span id="heartCoins">0</span>
+        </div>
+
+        <div class="currency-item">
+            ✨
+            <span id="dreamCoins">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     NOTIFICATION
+========================================================= -->
+
+<div
+    id="notification"
+    class="notification"
+    aria-live="polite"
+></div>
+
+
+<!-- =========================================================
+     LEVEL UP
+========================================================= -->
+
+<div
+    id="levelUp"
+    class="level-up"
+    aria-hidden="true"
+>
+
+    <div class="level-up-card">
+
+        <div class="emoji">
+            🆙💜
+        </div>
+
+        <h2>
+            LEVEL UP!
+        </h2>
+
+        <p id="levelUpText">
+            You reached a new level!
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN DREAMWORLD
+========================================================= -->
+
+<main
+    id="homeWorld"
+    class="dreamworld"
+>
+
+    <!-- STARS -->
+
+    <div class="star" style="left:8%;top:15%"></div>
+    <div class="star" style="left:18%;top:30%"></div>
+    <div class="star" style="left:30%;top:12%"></div>
+    <div class="star" style="left:45%;top:20%"></div>
+    <div class="star" style="left:60%;top:10%"></div>
+    <div class="star" style="left:75%;top:25%"></div>
+    <div class="star" style="left:90%;top:14%"></div>
+    <div class="star" style="left:12%;top:70%"></div>
+    <div class="star" style="left:25%;top:85%"></div>
+    <div class="star" style="left:70%;top:78%"></div>
+    <div class="star" style="left:85%;top:65%"></div>
+
+
+    <!-- TITLE -->
+
+    <div class="title">
+
+        <div class="title-small">
+            WELCOME TO
+        </div>
+
+        <h1>
+            DREAMWORLD
+        </h1>
+
+        <p>
+            Jillian's little universe 💜
+        </p>
+
+    </div>
+
+
+    <!-- HOME -->
+
+    <div class="home">
+
+        <div
+            class="house"
+            id="house"
+            role="button"
+            tabindex="0"
+            aria-label="Enter Jillian's home"
+        >
+
+            <div class="roof"></div>
+
+            <div class="house-body">
+
+                <div class="window left"></div>
+                <div class="window right"></div>
+
+                <div class="door"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="home-label">
+            JILLIAN'S HOME
+        </div>
+
+        <div class="home-hint">
+            click the house to enter
+        </div>
+
+
+        <div class="menu">
+
+            <button
+                class="menu-button"
+                id="exploreButton"
+            >
+                <span class="menu-icon">🗺️</span>
+                <span class="menu-text">EXPLORE</span>
+            </button>
+
+
+            <button
+                class="menu-button"
+                id="inventoryButton"
+            >
+                <span class="menu-icon">🎒</span>
+                <span class="menu-text">INVENTORY</span>
+            </button>
+
+
+            <button
+                class="menu-button"
+                id="memoriesButton"
+            >
+                <span class="menu-icon">💌</span>
+                <span class="menu-text">MEMORIES</span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="message"
+        class="message"
+    >
+        Something special is waiting inside... 💜
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     DAILY DREAM BUTTON
+========================================================= -->
+
+<button
+    id="dailyDreamButton"
+    class="daily-dream-button"
+>
+
+    <span class="daily-icon">
+        🌙
+    </span>
+
+    <span class="daily-text">
+
+        <strong>
+            DAILY DREAM
+        </strong>
+
+        <small>
+            Something is waiting for you...
+        </small>
+
+    </span>
+
+    <span class="daily-arrow">
+        →
+    </span>
+
+</button>
+
+
+<!-- =========================================================
+     EXPLORE SCREEN
+========================================================= -->
+
+<section
+    id="exploreScreen"
+    class="screen hidden"
+>
+
+    <div class="screen-header">
+
+        <div class="screen-label">
+            THE WORLD AWAITS
+        </div>
+
+        <h2>
+            🗺️ EXPLORE
+        </h2>
+
+        <p>
+            Discover new places in Dreamworld.
+        </p>
+
+    </div>
+
+
+    <div class="location-grid">
+
+
+        <!-- GARDEN -->
+
+        <button
+            class="location-card"
+            data-location="garden"
+        >
+
+            <div class="location-icon">
+                🌸
+            </div>
+
+            <div class="location-name">
+                DREAM GARDEN
+            </div>
+
+            <div class="location-description">
+                Search for beautiful things
+                hidden among the flowers.
+            </div>
+
+            <div class="location-status">
+                ✨ AVAILABLE
+            </div>
+
+        </button>
+
+
+        <!-- LAKE -->
+
+        <button
+            id="moonLakeCard"
+            class="location-card locked"
+            data-location="lake"
+        >
+
+            <div class="location-icon">
+                🌙
+            </div>
+
+            <div class="location-name">
+                MOON LAKE
+            </div>
+
+            <div class="location-description">
+                Catch falling stars reflected
+                across the moonlit water.
+            </div>
+
+            <div
+                id="moonLakeStatus"
+                class="location-status"
+            >
+                🔒 LEVEL 3
+            </div>
+
+        </button>
+
+
+        <!-- CASTLE -->
+
+        <button
+            id="dreamCastleCard"
+            class="location-card locked"
+            data-location="castle"
+        >
+
+            <div class="location-icon">
+                🏰
+            </div>
+
+            <div class="location-name">
+                DREAM CASTLE
+            </div>
+
+            <div class="location-description">
+                Enter the mysterious castle
+                beyond the clouds.
+            </div>
+
+            <div
+                id="dreamCastleStatus"
+                class="location-status"
+            >
+                🔒 LEVEL 5
+            </div>
+
+        </button>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        id="exploreBackButton"
+    >
+        ← Back to Dreamworld
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     DREAM GARDEN
+========================================================= -->
+
+<section
+    id="gardenScreen"
+    class="screen hidden"
+>
+
+    <div class="screen-header">
+
+        <div class="screen-label">
+            DREAMWORLD • LOCATION 01
+        </div>
+
+        <h2>
+            🌸 DREAM GARDEN
+        </h2>
+
+        <p>
+            Find every discovery to reveal the garden's secret.
+        </p>
+
+    </div>
+
+
+    <div class="garden-area">
+
+        <div
+            class="garden-star"
+            style="left:10%;top:18%"
+        >
+            ✨
+        </div>
+
+        <div
+            class="garden-star"
+            style="left:28%;top:10%"
+        >
+            ⭐
+        </div>
+
+        <div
+            class="garden-star"
+            style="left:72%;top:15%"
+        >
+            ✨
+        </div>
+
+        <div
+            class="garden-star"
+            style="left:88%;top:30%"
+        >
+            ⭐
+        </div>
+
+
+        <div
+            class="garden-flower"
+            style="left:12%;bottom:75px"
+            data-garden-object="flower"
+        >
+            🌷
+        </div>
+
+        <div
+            class="garden-flower"
+            style="left:25%;bottom:45px"
+            data-garden-object="flower"
+        >
+            🌸
+        </div>
+
+        <div
+            class="garden-flower"
+            style="right:20%;bottom:65px"
+            data-garden-object="flower"
+        >
+            🌺
+        </div>
+
+        <div
+            class="garden-flower"
+            style="right:8%;bottom:40px"
+            data-garden-object="flower"
+        >
+            🌷
+        </div>
+
+
+        <div
+            class="garden-butterfly"
+            style="left:18%;top:35%"
+            data-garden-object="butterfly"
+        >
+            🦋
+        </div>
+
+
+        <div
+            class="heart-tree"
+            data-garden-object="tree"
+        >
+            🌳💜
+        </div>
+
+
+        <div class="garden-ground"></div>
+
+    </div>
+
+
+    <div class="garden-controls">
+
+        <div class="discovery-panel">
+
+            <div class="discovery-top">
+
+                <div class="discovery-title">
+                    📖 GARDEN DISCOVERIES
+                </div>
+
+                <div
+                    id="discoveryCount"
+                    class="discovery-count"
+                >
+                    0 / 7
+                </div>
+
+            </div>
+
+            <div
+                id="discoveryGrid"
+                class="discovery-grid"
+            ></div>
+
+        </div>
+
+
+        <button
+            id="searchGardenButton"
+            class="search-garden"
+        >
+            🔍 SEARCH THE GARDEN
+        </button>
+
+
+        <div
+            id="gardenResult"
+            class="garden-result"
+            aria-live="polite"
+        >
+            Search the garden to discover something...
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        id="gardenBackButton"
+    >
+        ← Leave Dream Garden
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     MOON LAKE
+========================================================= -->
+
+<section
+    id="lakeScreen"
+    class="screen hidden"
+>
+
+    <div class="screen-header">
+
+        <div class="screen-label">
+            DREAMWORLD • LOCATION 02
+        </div>
+
+        <h2>
+            🌙 MOON LAKE
+        </h2>
+
+        <p>
+            Watch the sky carefully. Falling stars appear here.
+        </p>
+
+    </div>
+
+
+    <div class="lake-area">
+
+        <div class="lake-moon"></div>
+
+        <div
+            class="falling-star"
+            style="left:18%;top:20%;animation-delay:0s"
+            data-lake-star
+        >
+            ⭐
+        </div>
+
+        <div
+            class="falling-star"
+            style="left:50%;top:10%;animation-delay:1.2s"
+            data-lake-star
+        >
+            ✨
+        </div>
+
+        <div
+            class="falling-star"
+            style="left:78%;top:15%;animation-delay:2s"
+            data-lake-star
+        >
+            ⭐
+        </div>
+
+        <div class="lake-water"></div>
+
+    </div>
+
+
+    <div class="lake-action">
+
+        <button
+            id="catchStarButton"
+            class="action-button"
+        >
+            ⭐ Catch a Falling Star
+        </button>
+
+        <button
+            id="lakeWishButton"
+            class="action-button"
+        >
+            💜 Make a Moon Wish
+        </button>
+
+    </div>
+
+
+    <div
+        id="lakeResult"
+        class="garden-result"
+    >
+        The lake is quiet tonight...
+    </div>
+
+
+    <button
+        class="back-button"
+        id="lakeBackButton"
+    >
+        ← Leave Moon Lake
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     DREAM CASTLE
+========================================================= -->
+
+<section
+    id="castleScreen"
+    class="screen hidden"
+>
+
+    <div class="screen-header">
+
+        <div class="screen-label">
+            DREAMWORLD • LOCATION 03
+        </div>
+
+        <h2>
+            🏰 DREAM CASTLE
+        </h2>
+
+        <p>
+            The castle has been waiting for you.
+        </p>
+
+    </div>
+
+
+    <div class="castle-area">
+
+        <div class="castle">
+
+            <div class="castle-tower left"></div>
+            <div class="castle-tower right"></div>
+
+            <div class="castle-main">
+
+                <div class="castle-window w3"></div>
+
+                <div class="castle-door"></div>
+
+            </div>
+
+            <div class="castle-roof left"></div>
+            <div class="castle-roof right"></div>
+            <div class="castle-roof center"></div>
+
+            <div class="castle-window w1"></div>
+            <div class="castle-window w2"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="lake-action">
+
+        <button
+            id="castleDoorButton"
+            class="action-button"
+        >
+            🚪 Open the Castle Door
+        </button>
+
+        <button
+            id="castleTreasureButton"
+            class="action-button"
+        >
+            👑 Search the Throne Room
+        </button>
+
+    </div>
+
+
+    <div
+        id="castleResult"
+        class="garden-result"
+    >
+        The castle doors are silent...
+    </div>
+
+
+    <button
+        class="back-button"
+        id="castleBackButton"
+    >
+        ← Leave Dream Castle
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     DAILY DREAM MODAL
+========================================================= -->
+
+<div
+    id="dailyModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <div
+            id="dailyIcon"
+            class="modal-icon"
+        >
+            🌙
+        </div>
+
+        <div class="modal-label">
+            TODAY'S DREAM
+        </div>
+
+        <h2 id="dailyTitle">
+            A Little Surprise
+        </h2>
+
+        <p id="dailyMessage">
+            Something is waiting for you...
+        </p>
+
+        <div
+            id="dailyReward"
+            class="reward"
+        >
+            💜 +20
+        </div>
+
+        <button
+            id="dailyClaimButton"
+            class="primary-button"
+        >
+            CLAIM REWARD 💜
+        </button>
+
+        <button
+            id="dailyCloseButton"
+            class="secondary-button"
+        >
+            Maybe later
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     INVENTORY MODAL
+========================================================= -->
+
+<div
+    id="inventoryModal"
+    class="modal hidden"
+>
+
+    <div class="panel-card">
+
+        <div class="panel-icon">
+            🎒
+        </div>
+
+        <div class="modal-label">
+            JILLIAN'S COLLECTION
+        </div>
+
+        <h2>
+            Inventory
+        </h2>
+
+        <p>
+            Everything you discover in Dreamworld
+            will be remembered here.
+        </p>
+
+        <div class="stat-grid">
+
+            <div class="stat-box">
+                <strong id="inventoryHearts">
+                    0
+                </strong>
+                <span>HEART COINS</span>
+            </div>
+
+            <div class="stat-box">
+                <strong id="inventoryDreams">
+                    0
+                </strong>
+                <span>DREAM COINS</span>
+            </div>
+
+            <div class="stat-box">
+                <strong id="inventoryDiscoveries">
+                    0
+                </strong>
+                <span>DISCOVERIES</span>
+            </div>
+
+            <div class="stat-box">
+                <strong id="inventoryLevel">
+                    1
+                </strong>
+                <span>LEVEL</span>
+            </div>
+
+        </div>
+
+        <button
+            id="inventoryCloseButton"
+            class="secondary-button"
+        >
+            ← Close
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MEMORIES MODAL
+========================================================= -->
+
+<div
+    id="memoriesModal"
+    class="modal hidden"
+>
+
+    <div class="panel-card">
+
+        <div class="panel-icon">
+            💌
+        </div>
+
+        <div class="modal-label">
+            DREAMWORLD MEMORIES
+        </div>
+
+        <h2>
+            Memories
+        </h2>
+
+        <p id="memoryText">
+            Your story is only beginning...
+        </p>
+
+        <button
+            id="memoriesCloseButton"
+            class="secondary-button"
+        >
+            ← Close
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DREAMWORLD
+   COMPLETE REBUILT GAME SYSTEM
+========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const STORAGE_KEYS = {
+    player: "dreamworldSave",
+    daily: "dreamworldDaily",
+    garden: "dreamworldGardenDiscoveries",
+    lake: "dreamworldLakeData",
+    castle: "dreamworldCastleData"
+};
+
+
+/* =========================================================
+   SAFE STORAGE
+========================================================= */
+
+function storageAvailable(){
+
+    try{
+
+        const testKey =
+            "__dreamworld_storage_test__";
+
+        window.localStorage.setItem(
+            testKey,
+            "1"
+        );
+
+        window.localStorage.removeItem(
+            testKey
+        );
+
+        return true;
+
+    }catch(error){
+
+        return false;
+
+    }
+
+}
+
+
+const canUseStorage =
+    storageAvailable();
+
+
+function storageGet(key){
+
+    if(!canUseStorage){
+        return null;
+    }
+
+    try{
+
+        return window.localStorage.getItem(
+            key
+        );
+
+    }catch(error){
+
+        console.warn(
+            "Storage read failed:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+function storageSet(key,value){
+
+    if(!canUseStorage){
+        return false;
+    }
+
+    try{
+
+        window.localStorage.setItem(
+            key,
+            value
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.warn(
+            "Storage write failed:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+const DEFAULT_PLAYER = {
+    level:1,
+    xp:0,
+    xpNeeded:100,
+    heartCoins:0,
+    dreamCoins:0
+};
+
+
+let playerData = {
+    ...DEFAULT_PLAYER
+};
+
+
+/* =========================================================
+   DAILY DREAMS
+========================================================= */
+
+const dailyDreams = [
+
+    {
+        title:"A Little Flower",
+        message:
+            "You found a tiny purple flower growing in your dream.",
+        reward:20,
+        icon:"🌷"
+    },
+
+    {
+        title:"The Moon Left Something",
+        message:
+            "The moon was watching over your dream tonight.",
+        reward:25,
+        icon:"🌙"
+    },
+
+    {
+        title:"A Tiny Star",
+        message:
+            "You caught a little star before it disappeared.",
+        reward:30,
+        icon:"⭐"
+    },
+
+    {
+        title:"Someone Misses You",
+        message:
+            "A little purple heart appeared with a message...",
+        reward:35,
+        icon:"💌"
+    },
+
+    {
+        title:"Dream Garden",
+        message:
+            "You discovered something beautiful hiding in the garden.",
+        reward:40,
+        icon:"🌸"
+    }
+
+];
+
+
+/* =========================================================
+   GARDEN DISCOVERIES
+========================================================= */
+
+const gardenDiscoveries = [
+
+    {
+        id:"flower",
+        icon:"🌷",
+        name:"Purple Flower",
+        text:
+            "🌷 You discovered a beautiful purple flower!",
+        xp:10,
+        hearts:2,
+        dreams:0
+    },
+
+    {
+        id:"star",
+        icon:"⭐",
+        name:"Fallen Star",
+        text:
+            "⭐ A tiny star was hiding beneath the flowers!",
+        xp:20,
+        hearts:0,
+        dreams:5
+    },
+
+    {
+        id:"butterfly",
+        icon:"🦋",
+        name:"Dream Butterfly",
+        text:
+            "🦋 A mysterious butterfly landed beside you.",
+        xp:15,
+        hearts:3,
+        dreams:0
+    },
+
+    {
+        id:"letter",
+        icon:"💌",
+        name:"Mysterious Letter",
+        text:
+            "💌 You found a little letter beneath a flower.",
+        xp:25,
+        hearts:0,
+        dreams:3
+    },
+
+    {
+        id:"bunny",
+        icon:"🐰",
+        name:"Dream Bunny",
+        text:
+            "🐰 A tiny dream bunny appeared for a moment!",
+        xp:20,
+        hearts:4,
+        dreams:0
+    },
+
+    {
+        id:"heart",
+        icon:"💜",
+        name:"Heart Crystal",
+        text:
+            "💜 You discovered a glowing heart crystal!",
+        xp:30,
+        hearts:6,
+        dreams:2
+    },
+
+    {
+        id:"secret",
+        icon:"👑",
+        name:"Secret Garden",
+        text:
+            "👑 SECRET DISCOVERY! You found the hidden heart of the garden!",
+        xp:75,
+        hearts:15,
+        dreams:15,
+        secret:true
+    }
+
+];
+
+
+let gardenFound = [];
+
+
+/* =========================================================
+   LOCATION DATA
+========================================================= */
+
+const LOCATION_LEVELS = {
+    garden:1,
+    lake:3,
+    castle:5
+};
+
+
+/* =========================================================
+   LOCATION STATE
+========================================================= */
+
+let currentScreen = "home";
+
+
+let lakeData = {
+    starsCaught:0,
+    wishMade:false
+};
+
+
+let castleData = {
+    doorOpened:false,
+    treasureFound:false
+};
+
+
+/* =========================================================
+   DOM HELPER
+========================================================= */
+
+function $(id){
+
+    return document.getElementById(id);
+
+}
+
+
+/* =========================================================
+   SHOW / HIDE
+========================================================= */
+
+function showElement(element){
+
+    if(element){
+        element.classList.remove("hidden");
+    }
+
+}
+
+
+function hideElement(element){
+
+    if(element){
+        element.classList.add("hidden");
+    }
+
+}
+
+
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
+
+const screens = [
+    "exploreScreen",
+    "gardenScreen",
+    "lakeScreen",
+    "castleScreen"
+];
+
+
+function hideAllScreens(){
+
+    screens.forEach(
+        function(id){
+
+            hideElement(
+                $(id)
+            );
+
+        }
+    );
+
+}
+
+
+function showScreen(screenName){
+
+    hideAllScreens();
+
+    hideElement(
+        $("homeWorld")
+    );
+
+    hideElement(
+        $("dailyDreamButton")
+    );
+
+
+    if(screenName === "home"){
+
+        showElement(
+            $("homeWorld")
+        );
+
+        showElement(
+            $("dailyDreamButton")
+        );
+
+        currentScreen = "home";
+
+        return;
+
+    }
+
+
+    const screenMap = {
+        explore:"exploreScreen",
+        garden:"gardenScreen",
+        lake:"lakeScreen",
+        castle:"castleScreen"
+    };
+
+
+    const screenId =
+        screenMap[screenName];
+
+
+    if(!screenId){
+        showScreen("home");
+        return;
+    }
+
+
+    showElement(
+        $(screenId)
+    );
+
+
+    currentScreen =
+        screenName;
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function setMessage(text){
+
+    $("message").textContent =
+        text;
+
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+let notificationTimer = null;
+
+
+function notify(text){
+
+    const notification =
+        $("notification");
+
+
+    notification.textContent =
+        text;
+
+
+    notification.classList.add(
+        "show"
+    );
+
+
+    if(notificationTimer){
+
+        clearTimeout(
+            notificationTimer
+        );
+
+    }
+
+
+    notificationTimer =
+        setTimeout(
+            function(){
+
+                notification.classList.remove(
+                    "show"
+                );
+
+            },
+            2600
+        );
+
+}
+
+
+/* =========================================================
+   PLAYER SAVE
+========================================================= */
+
+function savePlayer(){
+
+    storageSet(
+        STORAGE_KEYS.player,
+        JSON.stringify(playerData)
+    );
+
+}
+
+
+/* =========================================================
+   LOAD PLAYER
+========================================================= */
+
+function loadPlayer(){
+
+    const saved =
+        storageGet(
+            STORAGE_KEYS.player
+        );
+
+
+    if(!saved){
+
+        playerData = {
+            ...DEFAULT_PLAYER
+        };
+
+        return;
+
+    }
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        playerData = {
+
+            level:
+                Math.max(
+                    1,
+                    Number(data.level) || 1
+                ),
+
+            xp:
+                Math.max(
+                    0,
+                    Number(data.xp) || 0
+                ),
+
+            xpNeeded:
+                Math.max(
+                    100,
+                    Number(data.xpNeeded) || 100
+                ),
+
+            heartCoins:
+                Math.max(
+                    0,
+                    Number(data.heartCoins) || 0
+                ),
+
+            dreamCoins:
+                Math.max(
+                    0,
+                    Number(data.dreamCoins) || 0
+                )
+
+        };
+
+    }catch(error){
+
+        console.warn(
+            "Invalid player save. Starting safely.",
+            error
+        );
+
+        playerData = {
+            ...DEFAULT_PLAYER
+        };
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD GARDEN
+========================================================= */
+
+function loadGarden(){
+
+    const saved =
+        storageGet(
+            STORAGE_KEYS.garden
+        );
+
+
+    if(!saved){
+
+        gardenFound = [];
+
+        return;
+
+    }
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        if(!Array.isArray(data)){
+
+            gardenFound = [];
+
+            return;
+
+        }
+
+
+        const validIds =
+            new Set(
+                gardenDiscoveries.map(
+                    item => item.id
+                )
+            );
+
+
+        gardenFound =
+            [...new Set(
+                data.filter(
+                    id =>
+                        validIds.has(id)
+                )
+            )];
+
+    }catch(error){
+
+        gardenFound = [];
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE GARDEN
+========================================================= */
+
+function saveGarden(){
+
+    storageSet(
+        STORAGE_KEYS.garden,
+        JSON.stringify(gardenFound)
+    );
+
+}
+
+
+/* =========================================================
+   LOAD LOCATION DATA
+========================================================= */
+
+function loadLocationData(){
+
+    const lakeSaved =
+        storageGet(
+            STORAGE_KEYS.lake
+        );
+
+
+    const castleSaved =
+        storageGet(
+            STORAGE_KEYS.castle
+        );
+
+
+    if(lakeSaved){
+
+        try{
+
+            const data =
+                JSON.parse(
+                    lakeSaved
+                );
+
+
+            lakeData = {
+
+                starsCaught:
+                    Math.max(
+                        0,
+                        Number(
+                            data.starsCaught
+                        ) || 0
+                    ),
+
+                wishMade:
+                    Boolean(
+                        data.wishMade
+                    )
+
+            };
+
+        }catch(error){
+
+            lakeData = {
+                starsCaught:0,
+                wishMade:false
+            };
+
+        }
+
+    }
+
+
+    if(castleSaved){
+
+        try{
+
+            const data =
+                JSON.parse(
+                    castleSaved
+                );
+
+
+            castleData = {
+
+                doorOpened:
+                    Boolean(
+                        data.doorOpened
+                    ),
+
+                treasureFound:
+                    Boolean(
+                        data.treasureFound
+                    )
+
+            };
+
+        }catch(error){
+
+            castleData = {
+                doorOpened:false,
+                treasureFound:false
+            };
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE LOCATION DATA
+========================================================= */
+
+function saveLake(){
+
+    storageSet(
+        STORAGE_KEYS.lake,
+        JSON.stringify(lakeData)
+    );
+
+}
+
+
+function saveCastle(){
+
+    storageSet(
+        STORAGE_KEYS.castle,
+        JSON.stringify(castleData)
+    );
+
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+function updateHUD(){
+
+    $("playerLevel").textContent =
+        playerData.level;
+
+
+    $("heartCoins").textContent =
+        playerData.heartCoins;
+
+
+    $("dreamCoins").textContent =
+        playerData.dreamCoins;
+
+
+    const percentage =
+        playerData.xpNeeded > 0
+            ? (
+                playerData.xp /
+                playerData.xpNeeded
+            ) * 100
+            : 0;
+
+
+    $("xpBar").style.width =
+        Math.min(
+            100,
+            percentage
+        ) + "%";
+
+
+    $("xpText").textContent =
+        playerData.xp +
+        " / " +
+        playerData.xpNeeded +
+        " XP";
+
+
+    updateLocationLocks();
+
+    updateInventory();
+
+}
+
+
+/* =========================================================
+   ADD HEARTS
+========================================================= */
+
+function addHeartCoins(amount){
+
+    const safeAmount =
+        Number(amount) || 0;
+
+
+    if(safeAmount <= 0){
+        return;
+    }
+
+
+    playerData.heartCoins +=
+        safeAmount;
+
+
+    updateHUD();
+
+    savePlayer();
+
+}
+
+
+/* =========================================================
+   ADD DREAM COINS
+========================================================= */
+
+function addDreamCoins(amount){
+
+    const safeAmount =
+        Number(amount) || 0;
+
+
+    if(safeAmount <= 0){
+        return;
+    }
+
+
+    playerData.dreamCoins +=
+        safeAmount;
+
+
+    updateHUD();
+
+    savePlayer();
+
+}
+
+
+/* =========================================================
+   ADD XP
+========================================================= */
+
+function addXP(amount){
+
+    const safeAmount =
+        Number(amount) || 0;
+
+
+    if(safeAmount <= 0){
+        return;
+    }
+
+
+    playerData.xp +=
+        safeAmount;
+
+
+    let levelsGained = 0;
+
+
+    while(
+        playerData.xp >=
+        playerData.xpNeeded
+    ){
+
+        playerData.xp -=
+            playerData.xpNeeded;
+
+
+        playerData.level++;
+
+
+        playerData.xpNeeded =
+            Math.max(
+                100,
+                Math.floor(
+                    playerData.xpNeeded *
+                    1.25
+                )
+            );
+
+
+        levelsGained++;
+
+    }
+
+
+    updateHUD();
+
+    savePlayer();
+
+
+    if(levelsGained > 0){
+
+        showLevelUp(
+            levelsGained
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LEVEL UP
+========================================================= */
+
+function showLevelUp(levelsGained){
+
+    const overlay =
+        $("levelUp");
+
+
+    $("levelUpText").textContent =
+        levelsGained === 1
+            ? "You reached LEVEL " +
+              playerData.level +
+              "!"
+            : "You gained " +
+              levelsGained +
+              " levels! You are now LEVEL " +
+              playerData.level +
+              "!";
+
+
+    overlay.classList.remove(
+        "show"
+    );
+
+
+    void overlay.offsetWidth;
+
+
+    overlay.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            overlay.classList.remove(
+                "show"
+            );
+
+        },
+        1800
+    );
+
+}
+
+
+/* =========================================================
+   LOCATION LOCKS
+========================================================= */
+
+function updateLocationLocks(){
+
+    updateLocationLock(
+        "moonLakeCard",
+        "moonLakeStatus",
+        LOCATION_LEVELS.lake
+    );
+
+
+    updateLocationLock(
+        "dreamCastleCard",
+        "dreamCastleStatus",
+        LOCATION_LEVELS.castle
+    );
+
+}
+
+
+function updateLocationLock(
+    cardId,
+    statusId,
+    requiredLevel
+){
+
+    const card =
+        $(cardId);
+
+
+    const status =
+        $(statusId);
+
+
+    if(!card || !status){
+        return;
+    }
+
+
+    const unlocked =
+        playerData.level >=
+        requiredLevel;
+
+
+    card.classList.toggle(
+        "locked",
+        !unlocked
+    );
+
+
+    status.textContent =
+        unlocked
+            ? "✨ AVAILABLE"
+            : "🔒 LEVEL " +
+              requiredLevel;
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function enterHome(){
+
+    setMessage(
+        "🏠 Welcome home, Jillian. 💜"
+    );
+
+    notify(
+        "🏠 Home sweet home."
+    );
+
+}
+
+
+function handleHouseKey(event){
+
+    if(
+        event.key === "Enter" ||
+        event.key === " "
+    ){
+
+        event.preventDefault();
+
+        enterHome();
+
+    }
+
+}
+
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+
+function openExplore(){
+
+    showScreen(
+        "explore"
+    );
+
+    updateLocationLocks();
+
+}
+
+
+function closeExplore(){
+
+    showScreen(
+        "home"
+    );
+
+}
+
+
+/* =========================================================
+   ENTER LOCATION
+========================================================= */
+
+function enterLocation(location){
+
+    if(
+        !Object.prototype.hasOwnProperty.call(
+            LOCATION_LEVELS,
+            location
+        )
+    ){
+
+        notify(
+            "That location does not exist."
+        );
+
+        return;
+
+    }
+
+
+    const requiredLevel =
+        LOCATION_LEVELS[location];
+
+
+    if(
+        playerData.level <
+        requiredLevel
+    ){
+
+        notify(
+            "🔒 " +
+            getLocationName(location) +
+            " unlocks at LEVEL " +
+            requiredLevel +
+            "."
+        );
+
+        return;
+
+    }
+
+
+    if(location === "garden"){
+
+        openGarden();
+
+        return;
+
+    }
+
+
+    if(location === "lake"){
+
+        openLake();
+
+        return;
+
+    }
+
+
+    if(location === "castle"){
+
+        openCastle();
+
+        return;
+
+    }
+
+}
+
+
+function getLocationName(location){
+
+    const names = {
+
+        garden:"Dream Garden",
+        lake:"Moon Lake",
+        castle:"Dream Castle"
+
+    };
+
+
+    return (
+        names[location] ||
+        "This location"
+    );
+
+}
+
+
+/* =========================================================
+   GARDEN
+========================================================= */
+
+function openGarden(){
+
+    showScreen(
+        "garden"
+    );
+
+    updateDiscoveryBook();
+
+    $("gardenResult").textContent =
+        gardenFound.length === 0
+            ? "🌸 Search the garden. Something is waiting..."
+            : gardenFound.length <
+              gardenDiscoveries.length - 1
+                ? "✨ Keep searching. More discoveries are waiting..."
+                : "👑 The garden's secret is ready to be discovered.";
+
+}
+
+
+function leaveGarden(){
+
+    openExplore();
+
+}
+
+
+/* =========================================================
+   GARDEN DISCOVERY BOOK
+========================================================= */
+
+function updateDiscoveryBook(){
+
+    const grid =
+        $("discoveryGrid");
+
+
+    const count =
+        $("discoveryCount");
+
+
+    grid.innerHTML = "";
+
+
+    gardenDiscoveries.forEach(
+        function(item){
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            const found =
+                gardenFound.includes(
+                    item.id
+                );
+
+
+            const secretUnlocked =
+                !item.secret ||
+                gardenFound.length >=
+                gardenDiscoveries.length - 1;
+
+
+            element.className =
+                "discovery-item";
+
+
+            if(found){
+
+                element.classList.add(
+                    "found"
+                );
+
+            }
+
+
+            if(item.secret){
+
+                element.classList.add(
+                    "secret"
+                );
+
+
+                if(secretUnlocked){
+
+                    element.classList.add(
+                        "unlocked"
+                    );
+
+                }
+
+            }
+
+
+            element.textContent =
+                found
+                    ? item.icon
+                    : item.secret
+                        ? secretUnlocked
+                            ? "👑"
+                            : "❓"
+                        : "❔";
+
+
+            element.title =
+                found
+                    ? item.name
+                    : item.secret
+                        ? secretUnlocked
+                            ? "Secret Garden"
+                            : "Secret discovery"
+                        : "Undiscovered";
+
+
+            grid.appendChild(
+                element
+            );
+
+        }
+    );
+
+
+    count.textContent =
+        gardenFound.length +
+        " / " +
+        gardenDiscoveries.length;
+
+}
+
+
+/* =========================================================
+   SEARCH GARDEN
+========================================================= */
+
+function searchGarden(){
+
+    const result =
+        $("gardenResult");
+
+
+    const normalDiscoveries =
+        gardenDiscoveries.filter(
+            item =>
+                !item.secret &&
+                !gardenFound.includes(
+                    item.id
+                )
+        );
+
+
+    /*
+       The secret is only available after
+       all six normal discoveries are found.
+    */
+
+    const normalComplete =
+        normalDiscoveries.length === 0;
+
+
+    if(normalComplete){
+
+        if(
+            gardenFound.includes(
+                "secret"
+            )
+        ){
+
+            result.textContent =
+                "🌸 You already discovered everything in the garden. The flowers smile at you.";
+
+            notify(
+                "🌸 Garden fully discovered."
+            );
+
+            return;
+
+        }
+
+
+        const secret =
+            gardenDiscoveries.find(
+                item =>
+                    item.id === "secret"
+            );
+
+
+        gardenFound.push(
+            secret.id
+        );
+
+
+        saveGarden();
+
+
+        addXP(
+            secret.xp
+        );
+
+        addHeartCoins(
+            secret.hearts
+        );
+
+        addDreamCoins(
+            secret.dreams
+        );
+
+
+        result.textContent =
+            secret.text +
+            " 🏆";
+
+
+        updateDiscoveryBook();
+
+
+        notify(
+            "👑 SECRET GARDEN DISCOVERED!"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+       Pick one of the undiscovered normal
+       discoveries.
+    */
+
+    const discovery =
+        normalDiscoveries[
+            Math.floor(
+                Math.random() *
+                normalDiscoveries.length
+            )
+        ];
+
+
+    gardenFound.push(
+        discovery.id
+    );
+
+
+    saveGarden();
+
+
+    addXP(
+        discovery.xp
+    );
+
+
+    if(discovery.hearts){
+
+        addHeartCoins(
+            discovery.hearts
+        );
+
+    }
+
+
+    if(discovery.dreams){
+
+        addDreamCoins(
+            discovery.dreams
+        );
+
+    }
+
+
+    result.textContent =
+        discovery.text +
+        " 🎉";
+
+
+    updateDiscoveryBook();
+
+
+    if(
+        gardenFound.length ===
+        gardenDiscoveries.length - 1
+    ){
+
+        notify(
+            "✨ You found everything except the secret..."
+        );
+
+        result.textContent +=
+            " 👑 Something deeper is now accessible...";
+
+    }
+
+}
+
+
+/* =========================================================
+   GARDEN OBJECTS
+========================================================= */
+
+function touchGardenObject(object){
+
+    const result =
+        $("gardenResult");
+
+
+    const messages = {
+
+        flower:
+            "🌸 The flower smells like a tiny piece of a dream...",
+
+        butterfly:
+            "🦋 The butterfly danced around you before disappearing...",
+
+        tree:
+            "💜 The Heart Tree is glowing softly. It seems to remember you."
+
+    };
+
+
+    result.textContent =
+        messages[object] ||
+        "✨ The garden is quietly watching...";
+
+}
+
+
+/* =========================================================
+   MOON LAKE
+========================================================= */
+
+function openLake(){
+
+    showScreen(
+        "lake"
+    );
+
+
+    updateLakeUI();
+
+
+    $("lakeResult").textContent =
+        lakeData.starsCaught === 0
+            ? "🌙 The lake is waiting for its first falling star..."
+            : "⭐ You have caught " +
+              lakeData.starsCaught +
+              " star" +
+              (
+                lakeData.starsCaught === 1
+                    ? ""
+                    : "s"
+              ) +
+              " here.";
+
+}
+
+
+function leaveLake(){
+
+    openExplore();
+
+}
+
+
+/* =========================================================
+   CATCH STAR
+========================================================= */
+
+function catchStar(){
+
+    /*
+       A controlled reward system.
+       No unlimited massive XP farming.
+    */
+
+    const rewardXP = 15;
+    const rewardDreams = 3;
+
+
+    lakeData.starsCaught++;
+
+
+    saveLake();
+
+
+    addXP(
+        rewardXP
+    );
+
+    addDreamCoins(
+        rewardDreams
+    );
+
+
+    $("lakeResult").textContent =
+        "⭐ You caught a falling star! +" +
+        rewardXP +
+        " XP • +" +
+        rewardDreams +
+        " ✨";
+
+
+    updateLakeUI();
+
+
+    notify(
+        "⭐ Star caught!"
+    );
+
+}
+
+
+/* =========================================================
+   MOON WISH
+========================================================= */
+
+function makeMoonWish(){
+
+    if(lakeData.wishMade){
+
+        $("lakeResult").textContent =
+            "🌙 The moon remembers your wish. Come back tomorrow.";
+
+        notify(
+            "🌙 You already made today's moon wish."
+        );
+
+        return;
+
+    }
+
+
+    lakeData.wishMade =
+        true;
+
+
+    saveLake();
+
+
+    addHeartCoins(
+        10
+    );
+
+    addXP(
+        20
+    );
+
+
+    $("lakeResult").textContent =
+        "💜 Your wish floated across the lake. +10 💜 • +20 XP";
+
+
+    notify(
+        "🌙 Your moon wish has been heard."
+    );
+
+
+    updateLakeUI();
+
+}
+
+
+function updateLakeUI(){
+
+    const wishButton =
+        $("lakeWishButton");
+
+
+    if(lakeData.wishMade){
+
+        wishButton.textContent =
+            "🌙 Wish Already Made";
+
+        wishButton.disabled =
+            true;
+
+        wishButton.style.opacity =
+            ".5";
+
+    }else{
+
+        wishButton.textContent =
+            "💜 Make a Moon Wish";
+
+        wishButton.disabled =
+            false;
+
+        wishButton.style.opacity =
+            "1";
+
+    }
+
+}
+
+
+/* =========================================================
+   DREAM CASTLE
+========================================================= */
+
+function openCastle(){
+
+    showScreen(
+        "castle"
+    );
+
+
+    updateCastleUI();
+
+
+    $("castleResult").textContent =
+        castleData.treasureFound
+            ? "👑 The throne room is quiet. You already claimed its treasure."
+            : castleData.doorOpened
+                ? "🏰 The castle is open. The throne room awaits..."
+                : "🏰 The castle doors are waiting for you.";
+
+}
+
+
+function leaveCastle(){
+
+    openExplore();
+
+}
+
+
+/* =========================================================
+   CASTLE DOOR
+========================================================= */
+
+function openCastleDoor(){
+
+    if(castleData.doorOpened){
+
+        $("castleResult").textContent =
+            "🚪 The castle door is already open.";
+
+        return;
+
+    }
+
+
+    castleData.doorOpened =
+        true;
+
+
+    saveCastle();
+
+
+    addXP(
+        35
+    );
+
+
+    addHeartCoins(
+        10
+    );
+
+
+    $("castleResult").textContent =
+        "🏰 The ancient doors open. A purple light fills the castle. +35 XP • +10 💜";
+
+
+    notify(
+        "🏰 The Dream Castle has opened!"
+    );
+
+
+    updateCastleUI();
+
+}
+
+
+/* =========================================================
+   CASTLE TREASURE
+========================================================= */
+
+function searchCastleTreasure(){
+
+    if(!castleData.doorOpened){
+
+        notify(
+            "🚪 Open the castle door first."
+        );
+
+        $("castleResult").textContent =
+            "🔒 The throne room is inaccessible until the castle doors are opened.";
+
+        return;
+
+    }
+
+
+    if(castleData.treasureFound){
+
+        $("castleResult").textContent =
+            "👑 You already discovered the castle treasure.";
+
+        return;
+
+    }
+
+
+    castleData.treasureFound =
+        true;
+
+
+    saveCastle();
+
+
+    addXP(
+        75
+    );
+
+    addHeartCoins(
+        25
+    );
+
+    addDreamCoins(
+        25
+    );
+
+
+    $("castleResult").textContent =
+        "👑 You discovered the Dream Crown! +75 XP • +25 💜 • +25 ✨";
+
+
+    notify(
+        "👑 DREAM CASTLE TREASURE FOUND!"
+    );
+
+
+    updateCastleUI();
+
+}
+
+
+function updateCastleUI(){
+
+    const doorButton =
+        $("castleDoorButton");
+
+
+    const treasureButton =
+        $("castleTreasureButton");
+
+
+    if(castleData.doorOpened){
+
+        doorButton.textContent =
+            "🚪 Castle Door Open";
+
+        doorButton.disabled =
+            true;
+
+        doorButton.style.opacity =
+            ".5";
+
+    }else{
+
+        doorButton.textContent =
+            "🚪 Open the Castle Door";
+
+        doorButton.disabled =
+            false;
+
+        doorButton.style.opacity =
+            "1";
+
+    }
+
+
+    if(castleData.treasureFound){
+
+        treasureButton.textContent =
+            "👑 Treasure Claimed";
+
+        treasureButton.disabled =
+            true;
+
+        treasureButton.style.opacity =
+            ".5";
+
+    }else{
+
+        treasureButton.textContent =
+            "👑 Search the Throne Room";
+
+        treasureButton.disabled =
+            false;
+
+        treasureButton.style.opacity =
+            "1";
+
+    }
+
+}
+
+
+/* =========================================================
+   DAILY DATE
+========================================================= */
+
+function getToday(){
+
+    const date =
+        new Date();
+
+
+    return (
+        date.getFullYear() +
+        "-" +
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0") +
+        "-" +
+        String(
+            date.getDate()
+        ).padStart(2,"0")
+    );
+
+}
+
+
+/* =========================================================
+   TODAY'S DREAM
+========================================================= */
+
+function getTodaysDream(){
+
+    const date =
+        new Date();
+
+
+    const index =
+        (
+            date.getFullYear() +
+            date.getMonth() +
+            date.getDate()
+        ) %
+        dailyDreams.length;
+
+
+    return dailyDreams[index];
+
+}
+
+
+/* =========================================================
+   OPEN DAILY DREAM
+========================================================= */
+
+function openDailyDream(){
+
+    const dream =
+        getTodaysDream();
+
+
+    $("dailyIcon").textContent =
+        dream.icon;
+
+
+    $("dailyTitle").textContent =
+        dream.title;
+
+
+    $("dailyMessage").textContent =
+        dream.message;
+
+
+    $("dailyReward").textContent =
+        "💜 +" +
+        dream.reward;
+
+
+    const claimed =
+        storageGet(
+            STORAGE_KEYS.daily
+        );
+
+
+    const alreadyClaimed =
+        claimed === getToday();
+
+
+    const button =
+        $("dailyClaimButton");
+
+
+    button.disabled =
+        alreadyClaimed;
+
+
+    button.textContent =
+        alreadyClaimed
+            ? "ALREADY CLAIMED 💜"
+            : "CLAIM REWARD 💜";
+
+
+    showElement(
+        $("dailyModal")
+    );
+
+}
+
+
+/* =========================================================
+   CLAIM DAILY DREAM
+========================================================= */
+
+function claimDailyDream(){
+
+    const today =
+        getToday();
+
+
+    const claimed =
+        storageGet(
+            STORAGE_KEYS.daily
+        );
+
+
+    if(claimed === today){
+
+        return;
+
+    }
+
+
+    const dream =
+        getTodaysDream();
+
+
+    addHeartCoins(
+        dream.reward
+    );
+
+
+    addXP(
+        15
+    );
+
+
+    storageSet(
+        STORAGE_KEYS.daily,
+        today
+    );
+
+
+    const button =
+        $("dailyClaimButton");
+
+
+    button.textContent =
+        "CLAIMED! 💜";
+
+
+    button.disabled =
+        true;
+
+
+    $("dailyReward").textContent =
+        "💜 REWARD CLAIMED";
+
+
+    $("gardenResult").textContent =
+        "✨ Today's dream is complete.";
+
+    notify(
+        "🌙 Daily Dream complete! +" +
+        dream.reward +
+        " 💜 • +15 XP"
+    );
+
+
+    setMessage(
+        "✨ You completed today's dream."
+    );
+
+}
+
+
+/* =========================================================
+   INVENTORY
+========================================================= */
+
+function updateInventory(){
+
+    $("inventoryHearts").textContent =
+        playerData.heartCoins;
+
+
+    $("inventoryDreams").textContent =
+        playerData.dreamCoins;
+
+
+    $("inventoryDiscoveries").textContent =
+        gardenFound.length;
+
+
+    $("inventoryLevel").textContent =
+        playerData.level;
+
+}
+
+
+function openInventory(){
+
+    updateInventory();
+
+    showElement(
+        $("inventoryModal")
+    );
+
+}
+
+
+function closeInventory(){
+
+    hideElement(
+        $("inventoryModal")
+    );
+
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+function openMemories(){
+
+    let text =
+        "Your story is only beginning...";
+
+
+    if(gardenFound.length >= 1){
+
+        text =
+            "🌸 You have begun exploring the Dream Garden.";
+
+    }
+
+
+    if(playerData.level >= 3){
+
+        text +=
+            " 🌙 Moon Lake has become part of your journey.";
+
+    }
+
+
+    if(playerData.level >= 5){
+
+        text +=
+            " 🏰 The Dream Castle now recognizes you.";
+
+    }
+
+
+    if(
+        gardenFound.length ===
+        gardenDiscoveries.length
+    ){
+
+        text =
+            "👑 You uncovered the secret heart of the Dream Garden. This memory will always belong to you.";
+
+    }
+
+
+    $("memoryText").textContent =
+        text;
+
+
+    showElement(
+        $("memoriesModal")
+    );
+
+}
+
+
+function closeMemories(){
+
+    hideElement(
+        $("memoriesModal")
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE DAILY
+========================================================= */
+
+function closeDailyDream(){
+
+    hideElement(
+        $("dailyModal")
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE ALL MODALS
+========================================================= */
+
+function closeAllModals(){
+
+    hideElement(
+        $("dailyModal")
+    );
+
+    hideElement(
+        $("inventoryModal")
+    );
+
+    hideElement(
+        $("memoriesModal")
+    );
+
+}
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+function bindEvents(){
+
+    /*
+       House
+    */
+
+    $("house").addEventListener(
+        "click",
+        enterHome
+    );
+
+
+    $("house").addEventListener(
+        "keydown",
+        handleHouseKey
+    );
+
+
+    /*
+       Home menu
+    */
+
+    $("exploreButton").addEventListener(
+        "click",
+        openExplore
+    );
+
+
+    $("inventoryButton").addEventListener(
+        "click",
+        openInventory
+    );
+
+
+    $("memoriesButton").addEventListener(
+        "click",
+        openMemories
+    );
+
+
+    /*
+       Daily Dream
+    */
+
+    $("dailyDreamButton").addEventListener(
+        "click",
+        openDailyDream
+    );
+
+
+    $("dailyClaimButton").addEventListener(
+        "click",
+        claimDailyDream
+    );
+
+
+    $("dailyCloseButton").addEventListener(
+        "click",
+        closeDailyDream
+    );
+
+
+    /*
+       Explore locations
+    */
+
+    document
+        .querySelectorAll(
+            ".location-card"
+        )
+        .forEach(
+            function(card){
+
+                card.addEventListener(
+                    "click",
+                    function(){
+
+                        const location =
+                            card.dataset.location;
+
+
+                        enterLocation(
+                            location
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    $("exploreBackButton").addEventListener(
+        "click",
+        closeExplore
+    );
+
+
+    /*
+       Garden
+    */
+
+    $("gardenBackButton").addEventListener(
+        "click",
+        leaveGarden
+    );
+
+
+    $("searchGardenButton").addEventListener(
+        "click",
+        searchGarden
+    );
+
+
+    document
+        .querySelectorAll(
+            "[data-garden-object]"
+        )
+        .forEach(
+            function(element){
+
+                element.addEventListener(
+                    "click",
+                    function(){
+
+                        touchGardenObject(
+                            element.dataset.gardenObject
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /*
+       Moon Lake
+    */
+
+    $("lakeBackButton").addEventListener(
+        "click",
+        leaveLake
+    );
+
+
+    $("catchStarButton").addEventListener(
+        "click",
+        catchStar
+    );
+
+
+    $("lakeWishButton").addEventListener(
+        "click",
+        makeMoonWish
+    );
+
+
+    /*
+       Castle
+    */
+
+    $("castleBackButton").addEventListener(
+        "click",
+        leaveCastle
+    );
+
+
+    $("castleDoorButton").addEventListener(
+        "click",
+        openCastleDoor
+    );
+
+
+    $("castleTreasureButton").addEventListener(
+        "click",
+        searchCastleTreasure
+    );
+
+
+    /*
+       Inventory
+    */
+
+    $("inventoryCloseButton").addEventListener(
+        "click",
+        closeInventory
+    );
+
+
+    /*
+       Memories
+    */
+
+    $("memoriesCloseButton").addEventListener(
+        "click",
+        closeMemories
+    );
+
+
+    /*
+       Modal background click
+    */
+
+    [
+        "dailyModal",
+        "inventoryModal",
+        "memoriesModal"
+    ]
+    .forEach(
+        function(id){
+
+            $(id).addEventListener(
+                "click",
+                function(event){
+
+                    if(
+                        event.target ===
+                        $(id)
+                    ){
+
+                        hideElement(
+                            $(id)
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /*
+       Escape
+    */
+
+    document.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key !==
+                "Escape"
+            ){
+
+                return;
+
+            }
+
+
+            closeAllModals();
+
+
+            if(
+                currentScreen !==
+                "home"
+            ){
+
+                showScreen(
+                    "home"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeDreamworld(){
+
+    loadPlayer();
+
+    loadGarden();
+
+    loadLocationData();
+
+    updateHUD();
+
+    updateDiscoveryBook();
+
+    updateLakeUI();
+
+    updateCastleUI();
+
+    bindEvents();
+
+    showScreen(
+        "home"
+    );
+
+
+    if(!canUseStorage){
+
+        notify(
+            "⚠️ Save storage is unavailable in this browser session."
+        );
+
+    }
+
+
+    console.log(
+        "Dreamworld initialized successfully."
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+if(
+    document.readyState ===
+    "loading"
+){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeDreamworld,
+        {
+            once:true
+        }
+    );
+
+}else{
+
+    initializeDreamworld();
+
+}
+
+</script>
+
+</body>
+</html>
